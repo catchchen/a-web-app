@@ -10,8 +10,17 @@ import java.util.Date;
 @Data
 public class Sort {
     private Integer id;
-    private String description;
-    private String name;
+
     private Date createTime;
     private Date updateTime;
+
+    /**
+     *    分类名称
+     */
+    private String name;
+    //分类描述
+    private String description;
+
+    private String slug;
+
 }

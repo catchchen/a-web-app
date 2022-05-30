@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="zx.app.web.mapper.ArticleMapper">
+    <select id="findPagedList" parameterType="string" resultType="zx.app.web.model.entity.Article">
+        select art.id,
+               art.title,
+               art.original_content     originContent,
+               art.formate_content     formateContent,
+               art.slug,
+               art.create_time          createTime,
+               art.update_time          updateTime,
+               art.word_count           wordCount,
+               art.visits,
+               art.likes,
+
+        FROM users u where u.username = #{username}
+    </select>
+    <select id="findById" parameterType="int" resultType="zx.app.web.model.entity.Article">
+        select art.id,
+               art.title,
+               art.original_content     originContent,
+               art.formate_content     formateContent,
+               art.slug,
+               art.create_time          createTime,
+               art.update_time          updateTime,
+               art.word_count           wordCount,
+               art.visits,
+
+        FROM article art where art.id = #{id}
+    </select>
 
 
 </mapper>

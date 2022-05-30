@@ -15,5 +15,6 @@ public class Attachment {
     private Date createTime;
     private Date updateTime;
     private String suffix;
-
+    private String slug;
+    private String slugName;
 }

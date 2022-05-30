@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="zx.app.web.mapper.SortMapper">
-
+    <select id="findByUsername" parameterType="string" resultType="zx.app.web.model.entity.Attachment">
+        select s.id,
+               s.create_time        createTime,
+               s.update_time        updateTime,
+               s.name,
+               s.description,
+               s.slug,
+               s.slug_name          slugName,
+               s.thumbnail,
+        FROM sort s where s.id = #{username}
+    </select>
 
 </mapper>
