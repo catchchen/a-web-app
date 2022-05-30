@@ -12,10 +12,10 @@ import zx.app.web.service.inter.UserService;
 @RequestMapping("/api/user/")
 public class UserRestfulController {
 
-//    private final UserService restful;
-//
-//    public UserResfulController(UserService restful) {
-//        restful = resful;
-//    }
+    private final UserService userService;
+
+    public UserRestfulController(UserService userService) {
+        this.userService = userService;
+    }
 
 }
