@@ -10,7 +10,7 @@ import java.io.IOException;
  * @author chenk
  */
 @Controller
-public class PageController {
+public class PageRedirectController {
     /**
      * Index redirect uri.
      */

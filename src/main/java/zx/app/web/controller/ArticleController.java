@@ -1,10 +1,7 @@
 package zx.app.web.controller;
 
 import org.springframework.beans.BeanUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import zx.app.web.model.Response;
 import zx.app.web.model.dto.ArticleDTO;
 import zx.app.web.model.entity.Article;
@@ -25,8 +22,10 @@ public class ArticleController {
         this.userService = userService;
     }
     @PostMapping("user/{userId}/articles")
-    public Response createArticle(@RequestBody ArticleDTO articleDTO){
-        articleService.save(articleDTO)
+    public Response createArticle(@RequestBody ArticleDTO articleDTO, @PathVariable("userId") Integer userId){
+        articleService.save(articleDTO, userId);
         return Response.ok("发布成功");
     }
+
+
 }
