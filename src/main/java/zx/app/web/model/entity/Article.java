@@ -10,6 +10,9 @@ import java.util.Date;
 @Data
 public class Article {
     private Integer id;
+    private String title;
+    private String author;
+    private String originContent;
 
     private Date editTime;
     private Date createTime;

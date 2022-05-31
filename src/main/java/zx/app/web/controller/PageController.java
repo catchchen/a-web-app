@@ -1,0 +1,28 @@
+package zx.app.web.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+/**
+ * @author chenk
+ */
+@Controller
+public class PageController {
+    /**
+     * Index redirect uri.
+     */
+    private static final String INDEX_REDIRECT_URI = "user/dist/index.html";
+    private static final String ADMIN_REDIRECT_URI = "admin/dist/index.html";
+    @GetMapping("/user-login")
+    public void login(HttpServletResponse response) throws IOException {
+        response.sendRedirect(INDEX_REDIRECT_URI);
+    }
+
+    @GetMapping("/admin-login")
+    public void admin(HttpServletResponse response) throws IOException {
+        response.sendRedirect(ADMIN_REDIRECT_URI);
+    }
+}

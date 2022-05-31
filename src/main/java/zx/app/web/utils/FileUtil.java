@@ -13,10 +13,6 @@ public class FileUtil {
     private FileUtil() {
     }
     /**
-     * Gets base name of file name. <br>
-     * eg: <br>
-     * filename: /home/test/test.txt <br>
-     * basename: test
      * 获取文件的名称
      * @param filename filename must not be blank
      * @return basename of the given file name
