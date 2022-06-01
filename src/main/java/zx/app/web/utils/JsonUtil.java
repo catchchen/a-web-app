@@ -157,7 +157,6 @@ public class JsonUtil {
     public static Map<?, ?> objectToMap(@NonNull Object source) throws IOException {
         return objectToMap(source, DEFAULT_JSON_MAPPER);
     }
-
     /**
      * Converts a source object to a map
      *
@@ -175,6 +174,5 @@ public class JsonUtil {
         // Deserialize the json
         return jsonToObject(json, Map.class, objectMapper);
     }
-
 }
 

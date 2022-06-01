@@ -1,4 +1,4 @@
-package zx.app.web.controller;
+package zx.app.web.controller.api;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;

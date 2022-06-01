@@ -1,4 +1,4 @@
-package zx.app.web.controller;
+package zx.app.web.controller.api;
 
 import org.springframework.web.bind.annotation.*;
 import zx.app.web.model.Response;
@@ -18,6 +18,7 @@ public class SortController {
     }
     @PostMapping
     public Response create(@RequestBody SortFormParam sortParam){
+
 
         return Response.ok("添加成功");
     }
