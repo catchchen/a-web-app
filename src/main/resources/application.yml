@@ -1,8 +1,6 @@
 
 spring:
-  # \u914D\u7F6Ethymeleaf
   thymeleaf:
-    # \u5173\u95EDthymeleaf\u7F13\u5B58
     cache: false
     prefix: classpath:/templates/
   datasource:
@@ -17,7 +15,11 @@ mybatis:
     map-underscore-to-camel-case: on
   type-aliases-package: com.ch.pojo.entity
 
-
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
 
 admin:
   username: admin

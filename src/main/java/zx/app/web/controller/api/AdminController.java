@@ -1,5 +1,7 @@
 package zx.app.web.controller.api;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import zx.app.web.model.Response;
@@ -32,11 +34,12 @@ public class AdminController {
     /////// user
     @GetMapping(value = "/users")
     public ResultWithPage getUsers(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, // 做分页处理 页数
-                                   @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize // 默认 一页五条数据)
+                                   @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize //  默认 一页五条数据
+                                   ){
         PageHelper.startPage(pageNum, pageSize);
     List<UserVo> userVo = userService.getUserVoList();
     PageInfo<UserVo> pageInfo = new PageInfo<>(userVo);
-    ResultWithPage.ok(pageInfo.getList(),pageInfo.getTotal())
+    return ResultWithPage.success(pageInfo.getList(),pageInfo.getTotal());
 }
 
     @DeleteMapping(value = "users/{userId}")

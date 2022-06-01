@@ -42,7 +42,7 @@ public class UserRestfulController {
     @PutMapping("/users")
     public Response editUser(@RequestBody User user){
         userService.editUser(user);
-        return Response.ok("注册成功");
+        return Response.ok("修改成功");
     }
 
     @PutMapping("/user/status")
