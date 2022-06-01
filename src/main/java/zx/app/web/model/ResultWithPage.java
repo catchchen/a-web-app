@@ -20,7 +20,7 @@ public class ResultWithPage<D> {
         this.msg = msg;
     }
 
-    public static ResultWithPage success(D data, Integer total){
+    public static <D> ResultWithPage success(D data, Integer total){
         return new ResultWithPage(data,total, HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase());
     }
 }

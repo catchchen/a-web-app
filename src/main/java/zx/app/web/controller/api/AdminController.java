@@ -23,13 +23,12 @@ import java.util.List;
 public class AdminController {
     private final UserService userService;
     private final ArticleService articleService;
-    private final CommentService commentService;
+//    private final CommentService commentService;
     public AdminController(UserService userService, ArticleService articleService, CommentService commentService) {
         this.userService = userService;
         this.articleService = articleService;
-        this.commentService = commentService;
+//        this.commentService = commentService;
     }
-
 
     /////// user
     @GetMapping(value = "/users")
@@ -37,27 +36,28 @@ public class AdminController {
                                    @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize //  默认 一页五条数据
                                    ){
         PageHelper.startPage(pageNum, pageSize);
-    List<UserVo> userVo = userService.getUserVoList();
-    PageInfo<UserVo> pageInfo = new PageInfo<>(userVo);
-    return ResultWithPage.success(pageInfo.getList(),pageInfo.getTotal());
+//    List<UserVo> userVo = userService.getUserVoList();
+//    PageInfo<UserVo> pageInfo = new PageInfo<>(userVo);
+    return ResultWithPage.success(null,null);
+//    return ResultWithPage.success(pageInfo.getList(),pageInfo.getTotal());
 }
 
     @DeleteMapping(value = "users/{userId}")
     public Response removeUser(@PathVariable("userId") Integer uid){
-        boolean bool = userService.removeUserByUid(uid);
+//        boolean bool = userService.removeUserByUid(uid);
         return Response.ok("删除成功");
     }
 
     @RequestMapping("user/{userId}")
     public Response getUser(@PathVariable("userId") Integer uid){
-        User user = userService.getUserByUserId(uid);
-        if(user != null) {
-            return Response.ok("success",user);
+//        User user = userService.getUserByUserId(uid);
+        if(true) { // user != null
+            return Response.ok("success");// user
         }
         return Response.fail("不存在的用户");
     }
 
-    @GetMapping("users")
+    @GetMapping("user")
     public Response getUsers() {
         List userList = userService.getUserList();
         // paged
@@ -88,7 +88,7 @@ public class AdminController {
     ///// article start
 
 
-
+    // common
     @PostMapping("user/{userId}/article/{articleId}")
     public Response commetUserArticle(@PathVariable("userId") Integer uid ,@PathVariable("articleId") Integer aid){
 

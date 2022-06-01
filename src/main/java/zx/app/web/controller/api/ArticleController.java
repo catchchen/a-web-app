@@ -23,7 +23,7 @@ public class ArticleController {
     }
     @PostMapping("user/{userId}/articles")
     public Response createArticle(@RequestBody ArticleDTO articleDTO, @PathVariable("userId") Integer userId){
-        articleService.save(articleDTO, userId);
+//        articleService.save(articleDTO, userId);
         return Response.ok("发布成功");
     }
 

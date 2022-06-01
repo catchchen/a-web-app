@@ -6,6 +6,8 @@ import zx.app.web.model.entity.Article;
 import zx.app.web.service.inter.ArticleService;
 import zx.app.web.utils.BeanUtil;
 
+import java.util.List;
+
 /**
  * @author chenk
  */
@@ -16,5 +18,14 @@ public class ArticleServiceImpl implements ArticleService {
     public Article save(ArticleDTO articleDTO) {
         Article newArticle = BeanUtil.transform(articleDTO, Article.class);
         return newArticle;
+    }
+
+    @Override
+    public void getArticleById(Integer id) {
+    }
+
+    @Override
+    public List getPostList() {
+        return null;
     }
 }

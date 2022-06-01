@@ -32,12 +32,13 @@ public class UserController {
 
     @GetMapping({"/index", "/"})
     public ModelAndView in(){
-        ModelAndView mav = new ModelAndView("index");
-        mav.addObject("user", new User());
+        ModelAndView mav = new ModelAndView();
+//        "index"
+/*        mav.addObject("user", new User());
 
         ArrayList<Article> articles = new ArrayList<>();
         Article article = new Article();
-        article.setThumbnail("/upload/article/img/1.png");
+        article.setThumbnail("/upload/article/img/1.png");s
         article.setTitle("标题");
         article.setSummary("你好！ " +
                 "这是你第一次使用 **Markdown编辑器** 所展示的欢迎页。" +
@@ -46,16 +47,20 @@ public class UserController {
         log.info("index ---> page website");
         articles.add(article);
         // 默认添加 的文章 注册的时候进行的
-        mav.addObject("posts",articles);
+        mav.addObject("posts",articles);*/
         //get user list     userService.list(); //
-        List<User> list = userService.getTopUsers();
+//        List<User> list = userService.getTopUsers();
+
+//        List list = new ArrayList();
+//        list.add("string");
+//        list.add("string2");
         // 通过 Grade 分数升序排序 显示用户排名
 //        articleService.list();
 //        map.addAttribute("hots", );
-        mav.addObject("users",list.stream()
-                .sorted(Comparator.comparingLong(User::getGrade)
-                        .reversed())
-                .collect(Collectors.toList()));
+//        mav.addObject("users",list.stream()
+//                .sorted(Comparator.comparingLong(User::getGrade)
+//                        .reversed())
+//                .collect(Collectors.toList()));
         return mav;
     }
 
