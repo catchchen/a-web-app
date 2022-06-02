@@ -13,6 +13,7 @@ import java.io.IOException;
 public class PageRedirectController {
     /**
      * Index redirect uri.
+     * 页面跳转
      */
     private static final String INDEX_REDIRECT_URI = "user/dist/index.html";
     private static final String ADMIN_REDIRECT_URI = "admin/dist/index.html";
@@ -25,4 +26,5 @@ public class PageRedirectController {
     public void admin(HttpServletResponse response) throws IOException {
         response.sendRedirect(ADMIN_REDIRECT_URI);
     }
+
 }

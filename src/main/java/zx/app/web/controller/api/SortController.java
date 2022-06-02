@@ -19,7 +19,6 @@ public class SortController {
     @PostMapping
     public Response create(@RequestBody SortFormParam sortParam){
 
-
         return Response.ok("添加成功");
     }
 

@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping({"/index", "/"})
-    public ModelAndView in(){
+    public String index(Model model){
         ModelAndView mav = new ModelAndView();
 //        "index"
 /*        mav.addObject("user", new User());
@@ -61,7 +61,7 @@ public class UserController {
 //                .sorted(Comparator.comparingLong(User::getGrade)
 //                        .reversed())
 //                .collect(Collectors.toList()));
-        return mav;
+        return "index";
     }
 
     @PostMapping("/user/register")

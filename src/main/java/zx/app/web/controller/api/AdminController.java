@@ -81,13 +81,11 @@ public class AdminController {
 
         return Response.ok("change success");
     }
-
-
     ////// user manage over
 
+
+
     ///// article start
-
-
     // common
     @PostMapping("user/{userId}/article/{articleId}")
     public Response commetUserArticle(@PathVariable("userId") Integer uid ,@PathVariable("articleId") Integer aid){

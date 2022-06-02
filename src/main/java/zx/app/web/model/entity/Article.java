@@ -13,6 +13,7 @@ public class Article {
     private Integer userId;
     private String title;
     private String author;
+    private String formatContent;
     private String originContent;
     private String summary;
     private String thumbnail;
