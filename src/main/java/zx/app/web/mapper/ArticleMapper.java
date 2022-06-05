@@ -21,7 +21,7 @@ public interface ArticleMapper {
 
     Article findById(@Param("id") Integer id);
 
-    Long insertArticle(Article article);
+    Long insertArticle(Article article, Integer userId);
 
     int updateStatus(Integer id, ArticleStatus status);
 

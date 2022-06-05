@@ -1,5 +1,6 @@
 package zx.app.web.service.inter;
 
+import zx.app.web.model.Response;
 import zx.app.web.model.common.ArticleStatus;
 import zx.app.web.model.dto.ArticleDTO;
 import zx.app.web.model.entity.Article;
@@ -13,7 +14,7 @@ import java.util.List;
  * @description
  */
 public interface ArticleService {
-    Article save(ArticleDTO articleDTO);
+    Response save(ArticleDTO articleDTO, Integer id);
 
     void getArticleById(Integer id);
 
@@ -21,7 +22,7 @@ public interface ArticleService {
 
     List getPostList();
 
-    int updateStatusById(Integer id, ArticleStatus status);
+    Response updateStatusById(Integer article, ArticleStatus status);
 
     ArrayList<ArticleVo> getHotsPost();
 }

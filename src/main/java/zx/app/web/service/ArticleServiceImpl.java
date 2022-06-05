@@ -2,6 +2,7 @@ package zx.app.web.service;
 
 import org.springframework.stereotype.Service;
 import zx.app.web.mapper.ArticleMapper;
+import zx.app.web.model.Response;
 import zx.app.web.model.common.ArticleStatus;
 import zx.app.web.model.dto.ArticleDTO;
 import zx.app.web.model.entity.Article;
@@ -24,10 +25,15 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article save(ArticleDTO articleDTO) {
+    public Response save(ArticleDTO articleDTO, Integer uid) {
         Article newArticle = BeanUtil.transform(articleDTO, Article.class);
-        articleMapper.insertArticle(newArticle);
-        return newArticle;
+
+        Long a = articleMapper.insertArticle(newArticle, uid);
+
+        if(a < 1){
+            return Response.fail("发布失败");
+        }
+        return Response.ok("发布成功");
     }
 
     @Override
@@ -46,8 +52,10 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public int updateStatusById(Integer id, ArticleStatus status) {
-        return articleMapper.updateStatus(id, status);
+    public Response updateStatusById(Integer id, ArticleStatus status) {
+        int i = articleMapper.updateStatus(id, status);
+        if(i < 1) return Response.fail("修改状态失败");
+        return Response.ok("修改状态成功");
     }
 
     @Override
