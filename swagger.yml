@@ -2,115 +2,350 @@ swagger: "2.0"
 info:
   description: "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters."
   version: "1.0.0"
-  title: "Swagger Petstore"
+  title: "Swagger zx knowledge share"
   termsOfService: "http://swagger.io/terms/"
-  contact:
-    email: "apiteam@swagger.io"
-  license:
-    name: "Apache 2.0"
-    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "petstore.swagger.io"
 basePath: "/"
 tags:
-  - name: "pet"
-    description: "Everything about your Pets"
-    externalDocs:
-      description: "Find out more"
-      url: "http://swagger.io"
-  - name: "store"
-    description: "Access to Petstore orders"
   - name: "user"
-    description: "Operations about user"
-    externalDocs:
-      description: "Find out more about our store"
-      url: "http://swagger.io"
+    description: "Operations about user and article"
+  - name: 'admin'
+    description: 'admin operation about user and post article'
 schemes:
-  - "https"
   - "http"
 paths:
   /api/admin/users:
     get:
       tags:
         - admin
-      summary: '特定のバケット配下のワークスペース情報を取得します'
-      description: 'ワークスペース情報を取得します'
+      summary: 'get user list'
+      description: 'admin get all users'
+      responses:
+        200:
+          description: 获得用户列表成功的返回值
+          schema:
+            type: object
+            properties:
+              content:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: rename workspace success
+
+  /api/admin/users/{userId}:
+    get:
+      tags:
+        - admin
+      summary: "user info"
+      description: "get user by id"
+      parameters:
+        - name: userId
+          description: userId
+          in: path
+          type: number
+          required: true
+      responses:
+        200:
+          description: 获得用户列表成功的返回值
+          schema:
+            type: object
+            properties:
+              content:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+    delete:
+      tags:
+        - admin
+      summary: "delete user"
+      description: "delete user by id"
+      parameters:
+        - name: userId
+          description: userId
+          in: path
+          type: number
+          required: true
+      responses:
+        200:
+          description: 获得用户列表成功的返回值
+          schema:
+            type: object
+            properties:
+              content:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+
+  /api/admin/users/status:
+    put:
+      tags:
+        - admin
+      summary: "change user status"
+      description: "status post article change"
+      parameters:
+        - name: userId
+          description: userId
+          in: query
+          type: number
+          required: true
+      responses:
+        200:
+          description: 获得用户列表成功的返回值
+          schema:
+            type: object
+            properties:
+              content:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+  #   @PutMapping("user/{userId}")
+  #   public Response modifyUserInfo(@PathVariable("userId") Integer id){
+  #   User user = userService.getUserById(id);
+  #   log.info("user id:{} user name:{}",id,user.getUsername());
+  #   return Response.fail();
+  # }
+  #   return Response.ok("change success");
+
+  /api/admin/posts:
+    get:
+      tags:
+        - admin
+      summary: "post Article info"
+      description: "get post Article info"
+      parameters:
+        - name: userId
+          description: userId
+          in: query
+          type: number
+          required: true
+      responses:
+        200:
+          description: 获得用户列表成功的返回值
+          schema:
+            type: object
+            properties:
+              content:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+
+  /api/admin/posts/{articleId}:
+    get:
+      tags:
+        - admin
+      summary: "get Article Info"
+      description: get
+      parameters:
+        - name: articleId
+          description: userId
+          in: path
+          type: number
+          required: true
+      responses:
+        200:
+          description: 获得用户列表成功的返回值
+          schema:
+            type: object
+            properties:
+              content:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+    delete:
+      tags:
+        - admin
+      summary: "delete article info"
+      description: "delete posted Article"
+      parameters:
+        - name: articleId
+          description: userId
+          in: path
+          type: number
+          required: true
+      responses:
+        200:
+          description: 获得用户列表成功的返回值
+          schema:
+            type: object
+            properties:
+              content:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+  /api/admin/posts/public:
+    put:
+      tags:
+        - admin
+      summary: "change public posted artic;e"
+      description: "change public posted become un"
+      parameters:
+        - name: userId
+          description: userId
+          in: query
+          type: number
+          required: true
+      responses:
+        200:
+          description: 获得用户列表成功的返回值
+          schema:
+            type: object
+            properties:
+              content:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+  /user/{userId}/article:
+    post:
+      tags:
+        - user
+      summary: "user post article"
+      description: "post a public article"
+      parameters:
+        - name: userId
+          in: path
+          description: "user id"
+          required: true
+          type: number
+        - in: "body"
+          name: "body"
+          description: "order placed for purchasing the pet"
+          required: true
+          schema:
+            properties:
+              originContent:
+                type: string
+                description: 文章源格式
+                example: "# 标题/n <br>内容"
+              status:
+                enum: [PUBLISHED, WREDITINGITE, RECYCLE]
+                type: number
+                example: "PUBLISHED"
+                description: "PUBLISHED 1 EDITING(2), RECYCLE(3), DELETE(4)"
+              title:
+                type: string
+                description: 文章标题
+                example: "标题"
+      responses:
+        200:
+          description: 获得用户列表成功的返回值
+          schema:
+            type: object
+            properties:
+              content:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+
+  /user/{userId}/article/{id}:
+    get:
+      tags:
+        - user
+      summary: "get article by userid and article id"
+      description: get
+      parameters:
+        - name: userId
+          description: userId
+          in: path
+          type: number
+          required: true
+        - name: id
+          description: userId
+          in: path
+          type: number
+          required: true
+      responses:
+        200:
+          description: 获得用户列表成功的返回值
+          schema:
+            type: object
+            properties:
+              content:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+  /user{userId}/article/status:
+    put:
+      tags:
+        - user
+      summary: "change article status"
+      description: "change article status"
+      parameters:
+        - name: userId
+          description: userId
+          in: path
+          type: number
+          required: true
+      responses:
+        200:
+          description: 获得用户列表成功的返回值
+          schema:
+            type: object
+            properties:
+              content:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+  /user/login:
+    post:
+      tags:
+        - user
+      summary: "user login"
+      description: "user login system"
+      parameters:
+        - name: userId
+          description: userId
+          in: query
+          type: number
+          required: true
+      responses:
+        200:
+          description: 获得用户列表成功的返回值
+          schema:
+            type: object
+            properties:
+              content:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
 
 
 
-    @GetMapping(value = "/users")
-    public ResultWithPage getUsers
+# thymeleaf 相关 模板渲染界面
+
+/index:
+  get:
+    tags:
+      - user-template
 
 
-
-    @DeleteMapping(value = "users/{userId}")
-
-    @GetMapping("user/{userId}")
-
-
-    @GetMapping("user")
-    public Response getUsers() {
-    List userList = userService.getUserList();
-    // paged
-    return Response.ok(userList);
-  }
-
-    @PutMapping("user/{userId}")
-    public Response modifyUserInfo(@PathVariable("userId") Integer id){
-    User user = userService.getUserById(id);
-    log.info("user id:{} user name:{}",id,user.getUsername());
-    return Response.fail();
-  }
-
-
-    @PutMapping("user/status")
-    public Response changeUserState(User user){
-
-    return Response.ok("change success");
-  }
-
-    @GetMapping("posts")
-    public Response getPosts() {
-    List postList = articleService.getPostList();
-  //        paged
-  return Response.ok("success", postList);
-}
-
-
-  @PostMapping("user/{userId}/article/{articleId}")
-  public Response commetUserArticle(@PathVariable("userId") Integer uid ,@PathVariable("articleId") Integer aid){
-
-  return Response.ok("comment success");
-}
-
-
-/api/findByStatus:
-
-/pet/findByTags:
-
-/user:
-
-/user/createBy:
-
-
-/user/login:
-
-/user/logout:
-
-/user/{username}:
-
-
-
-
-  user
-  @RequestMapping("/api/")
-  @PostMapping("user/login")
-  @PutMapping("/users")
-  @PutMapping("/user/password")
-  文章相关操作
-
+/users/{userId}/home:
+  parameters:
+    - name: userId
 
 definitions:
-  Order:
+  Article:
     type: "object"
     properties:
       id:
@@ -135,9 +370,7 @@ definitions:
       complete:
         type: "boolean"
         default: false
-    xml:
-      name: "Order"
-  Category:
+  Sort:
     type: "object"
     properties:
       id:
@@ -145,33 +378,28 @@ definitions:
         format: "int64"
       name:
         type: "string"
-    xml:
-      name: "Category"
   User:
     type: "object"
     properties:
       id:
         type: "integer"
-        format: "int64"
+        format: "int32"
       username:
         type: "string"
-      firstName:
-        type: "string"
-      lastName:
+      nickname:
         type: "string"
       email:
         type: "string"
       password:
         type: "string"
-      phone:
-        type: "string"
-      userStatus:
+      status:
         type: "integer"
         format: "int32"
-        description: "User Status"
-    xml:
-      name: "User"
-  Tag:
+        description: "是否禁止评论"
+      expire:
+        type: string
+        description: "是否禁止发布"
+  UserVo:
     type: "object"
     properties:
       id:
@@ -179,8 +407,6 @@ definitions:
         format: "int64"
       name:
         type: "string"
-    xml:
-      name: "Tag"
   Pet:
     type: "object"
     required:
@@ -190,8 +416,6 @@ definitions:
       id:
         type: "integer"
         format: "int64"
-      category:
-        $ref: "#/definitions/Category"
       name:
         type: "string"
         example: "doggie"
@@ -202,13 +426,6 @@ definitions:
           wrapped: true
         items:
           type: "string"
-      tags:
-        type: "array"
-        xml:
-          name: "tag"
-          wrapped: true
-        items:
-          $ref: "#/definitions/Tag"
       status:
         type: "string"
         description: "pet status in the store"
@@ -216,9 +433,7 @@ definitions:
           - "available"
           - "pending"
           - "sold"
-    xml:
-      name: "Pet"
-  ApiResponse:
+  Response:
     type: "object"
     properties:
       code:
@@ -228,6 +443,3 @@ definitions:
         type: "string"
       message:
         type: "string"
-externalDocs:
-  description: "Find out more about Swagger"
-  url: "http://swagger.io"

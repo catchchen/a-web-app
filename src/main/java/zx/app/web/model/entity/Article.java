@@ -19,4 +19,5 @@ public class Article {
     private String thumbnail;
     private Date createTime;
     private Date updateTime;
+
 }

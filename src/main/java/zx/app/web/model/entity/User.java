@@ -10,9 +10,8 @@ import java.util.Date;
 @Data
 public class User {
     private Integer id;
-    private Date createDate;
-    private Date updateDate;
-
+    private Date createTime;
+    private Date updateTime;
     private String email;
     private String username;
     private String password;
@@ -23,4 +22,7 @@ public class User {
     // 能否发布状态 default 1 true
     private boolean expire;
     private long grade;
+    private String sign;
+    // 额外拓展字段
+    private String attr3;
 }

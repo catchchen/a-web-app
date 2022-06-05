@@ -6,4 +6,5 @@ package zx.app.web.service.inter;
  */
 public interface CommentService {
 
+
 }

@@ -15,6 +15,7 @@
                art.likes,
         FROM article art
     </select>
+
     <select id="findById" parameterType="int" resultType="zx.app.web.model.entity.Article">
         select art.id,
                art.title,
@@ -23,10 +24,51 @@
                art.slug,
                art.create_time          createTime,
                art.update_time          updateTime,
-               art.word_count           wordCount,
                art.summary,
-               art.visits
+                art.visits
         FROM article art where art.id = #{id}
     </select>
 
+    <select id="findBy" parameterType="zx.app.web.model.ArticleQuery" resultType="list">
+        select art.id,
+               art.title,
+               art.original_content     originContent,
+               art.format_content     formatContent,
+               art.slug,
+               art.create_time          createTime,
+               art.update_time          updateTime,
+               art.summary,
+                art.visits
+        FROM article art where art.id = #{id}
+    </select>
+
+    <select id="findHotList" resultType="zx.app.web.model.vo.ArticleVo">
+        select
+              art.id,
+              art.title,
+              u.nickname,
+              art.summary,
+              art.update_time,
+              u.sign
+        from
+           article art left join users u
+               on art.userId = u.id order by art.likes limit 0 , 3
+    </select>
+
+    <insert id="insertArticle"  parameterType="zx.app.web.model.dto.ArticleDTO" useGeneratedKeys="true" keyProperty="id">
+        insert into article(userId,
+                            create_time,
+                            update_time,
+                            format_content,
+                            original_content,
+                            summary,
+                            title,
+                            url)
+        values (#{userId},#{createTime}, #{updateTime},#{formatContent},#{originContent},#{summary},#{title})
+    </insert>
+
+
+
+    <update id="updateStatus">
+    </update>
 </mapper>

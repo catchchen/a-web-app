@@ -6,7 +6,6 @@ export const DEVICE_TYPE = {
   MOBILE: 'mobile'
 }
 
-
 export const deviceEnquire = function(callback) {
   const matchDesktop = {
     match: () => {
@@ -26,7 +25,7 @@ export const deviceEnquire = function(callback) {
     }
   }
 //媒体查询 适应不同设备之间的
-  // screen and (max-width: 1087.99px)
+// screen and (max-width: 1087.99px)
   enquireJs
     .register('screen and (max-width: 576px)', matchMobile)
     .register('screen and (min-width: 576px) and (max-width: 1199px)', matchLablet)

@@ -4,7 +4,11 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
+import zx.app.web.model.UserQuery;
 import zx.app.web.model.entity.User;
+import zx.app.web.model.vo.UserVo;
+
+import java.util.List;
 
 /**
  * @author chenk
@@ -16,7 +20,21 @@ public interface UserMapper {
 //    @Options(useGeneratedKeys = true, keyProperty = "id")
 //    int insert(User user);
 
-    @Select("SELECT id, name, state, country FROM users WHERE id = #{id}")
+    @Select("select * from users")
+    List selectUsers();
+
+    @Select("SELECT * FROM users WHERE id = #{id}")
     User findById(int id);
 
+    User findByUsername(String username);
+
+    User findByEmail(String email);
+
+//    List<User> findBy(UserQuery userQuery);
+
+    List<User> findTopUsers();
+
+    int insertUser(User user);
+
+    List<UserVo> selectUserVo();
 }

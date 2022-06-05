@@ -1,19 +1,24 @@
 package zx.app.web.controller;
 
+import cn.hutool.core.lang.Validator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import zx.app.web.model.RegisterFormParams;
 import zx.app.web.model.entity.Article;
 import zx.app.web.model.entity.User;
+import zx.app.web.model.vo.ArticleVo;
 import zx.app.web.service.inter.ArticleService;
 import zx.app.web.service.inter.UserService;
+import zx.app.web.utils.BeanUtil;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -32,11 +37,15 @@ public class UserController {
 
     @GetMapping({"/index", "/"})
     public String index(Model model){
-        ModelAndView mav = new ModelAndView();
+//        ModelAndView mav = new ModelAndView();
+        model.addAttribute("users", userService.getTopUsers());
+        model.addAttribute("user" , userService.getUserById(1));
+
+        ArrayList<ArticleVo> articles =articleService.getHotsPost();
+
 //        "index"
 /*        mav.addObject("user", new User());
 
-        ArrayList<Article> articles = new ArrayList<>();
         Article article = new Article();
         article.setThumbnail("/upload/article/img/1.png");s
         article.setTitle("标题");
@@ -55,7 +64,7 @@ public class UserController {
 //        list.add("string");
 //        list.add("string2");
         // 通过 Grade 分数升序排序 显示用户排名
-//        articleService.list();
+//        articleService.listTopView();
 //        map.addAttribute("hots", );
 //        mav.addObject("users",list.stream()
 //                .sorted(Comparator.comparingLong(User::getGrade)
@@ -65,27 +74,40 @@ public class UserController {
     }
 
     @PostMapping("/user/register")
-    public String register(@RequestBody RegisterFormParams params, Model model) {
-
-        if(true){
+    public String register(@RequestParam("username") String username,
+                           @RequestParam("nickname") String nickname,
+                           @RequestParam("email") String email,
+                           @RequestParam("password") String password,
+                           @RequestParam("sign") String sign,
+                            Model ModelMap
+    ) {
+        log.info("--->{}--->{}进入注册", username, email);
+        RegisterFormParams params = new RegisterFormParams(username,nickname,password,email,sign);
+        final User user = userService.getUserByUsername(username);
+        if(user != null){
+            ModelMap.addAttribute("msg", "用户名或被占用");
+        }
+        User newUser = BeanUtil.transform(params, User.class);
+        userService.setPassword(newUser, params.getPassword());
+        int i = userService.createBy(newUser);
+        if(i > 0){
+            // 交给pageController 处理请求 返回登录界面
             return "redirect:/user-login";
         }
-
-        final User user = userService.getUserByUsername(params.getUsername());
-        if(user != null){
-
-        }
-        model.addAttribute("msg", "用户名或被占用");
-
-//        else "redirect:/500";
         return "500";
     }
+
+
 
     @GetMapping("/article/{articleId}")
     public ModelAndView getArticleInfo(@PathVariable("articleId") Integer id, ModelAndView mav){
         articleService.getArticleById(id);
         mav.setViewName("/post-page");
-
         return mav;
+    }
+
+    @GetMapping("/users/{userId}/home")
+    public String userGetArticlePagedInfo(@PathVariable("userId") Integer userId, ModelMap map) {
+        return "/user-home";
     }
 }

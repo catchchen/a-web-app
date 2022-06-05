@@ -2,7 +2,6 @@ package zx.app.web.utils;
 
 import org.springframework.lang.NonNull;
 import org.springframework.util.Assert;
-
 import java.util.Calendar;
 import java.util.Date;
 
@@ -14,7 +13,9 @@ public class DateUtil {
     }
     @NonNull
     public static Date now() {
-        return new Date();
+        Date date = new Date();
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return date;
     }
 
     public static Calendar convertTo(@NonNull Date date) {

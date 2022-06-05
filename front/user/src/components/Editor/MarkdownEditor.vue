@@ -6,19 +6,17 @@
       :boxShadow="false"
       :toolbars="toolbars"
       :ishljs="true"
+      @save="handleSave"
       autofocus
     />
-    <!-- 
-      @imgAdd="handleAttachmentUpload"
-      @save="handleSaveDraft"
-     -->
   </div>
 </template>
 <script>
+import axios from 'axios'
 import { toolbars } from '@/core/toolbars'
 import { haloEditor } from 'halo-editor'
 import 'halo-editor/dist/css/index.css'
-// import attachmentApi from '@/api/attachment'
+
 export default {
   name: 'MarkdownEditor',
   components: {
@@ -46,19 +44,9 @@ export default {
     }
   },
   methods: {
-    // pos, $file
-    handleAttachmentUpload() {
-      // var formdata = new FormData()
-      // formdata.append('file', $file)
-      // attachmentApi.upload(formdata).then(response => {
-      //   var responseObject = response.data
-      //   var HaloEditor = this.$refs.md
-      //   HaloEditor.$img2Url(pos, encodeURI(responseObject.data.path))
-      // })
-    },
-    // handleSaveDraft() {
-    //   this.$emit('onSaveDraft')
-    // }
+    handleSave() {
+      this.$emit('onSave')
+    }
   }
 }
 </script>

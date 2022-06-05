@@ -1,0 +1,256 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <title>个人主页</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="author" content="{user.nickname!}" />
+
+    <link rel="stylesheet" th:href="@{source/css/font-awesome/font-awesome.min.css}" href="source/css/font-awesome/font-awesome.min.css">
+    <link th:href="@{source/css/blog_basic.min.css}"  href="../public/source/css/blog_basic.min.css?version=88107691fe" rel="stylesheet">
+    <link th:href="@{source/css/style.min.css}" href="../public/source/css/style.min.css" type="text/css" rel="stylesheet" />
+
+      <script type="text/javascript" th:src="@{source/js/prism.min.js}" src="../public/source/js/prism.min.js"></script>
+        <style>
+            table {
+                border-spacing: 0;
+                border-collapse: collapse;
+                margin-top: 0;
+                margin-bottom: 16px;
+                display: block;
+                width: 100%;
+                overflow: auto;
+            }
+            table th {
+                font-weight: 600;
+            }
+            table th,
+            table td {
+                padding: 6px 13px;
+                border: 1px solid #dfe2e5;
+            }
+            table tr {
+                background-color: #fff;
+                border-top: 1px solid #c6cbd1;
+            }
+            table tr:nth-child(2n) {
+                background-color: #f6f8fa;
+            }
+        </style>
+
+    <link rel="alternate" type="application/rss+xml" title="atom 1.0" href="">
+    <style>
+        .post .post-title h3 {
+            text-transform: none;
+        }
+        .sidebar .logo-title .title h3 {
+            text-transform: none;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+            background-color: #eee;
+        }
+        ::-webkit-scrollbar-track {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript" th:src="@{js/jquery/jquery-2.2.4.min.js}" src="../public/js/jquery/jquery-2.2.4.min.js"></script>
+<script type="text/javascript">
+    var url = location.href;
+    var urlstatus = false;
+    $(".nav li a").each(function () {
+        if ((url + '/').indexOf($(this).attr('href')) > -1 && $(this).attr('href') != '/') {
+            $(this).addClass('current');
+            urlstatus = true;
+        } else {
+            $(this).removeClass('current');
+        }
+    });
+    if (!urlstatus) {
+        $(".nav li a").eq(0).addClass('current');
+    }
+
+	  var xhr = new XMLHttpRequest();
+	  xhr.open('get', 'https://v1.hitokoto.cn');
+	  xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+              var data = JSON.parse(xhr.responseText);
+              var yiyan = document.getElementById('yiyan');
+              yiyan.innerText = data.hitokoto+"        -「"+data.from+"」";
+          }
+      };
+	  xhr.send();
+</script>
+
+<!-- side bar  -->
+<div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+        <div class="title">
+            <img src="//cn.gravatar.com/avatar/01dd5503de8765d3dc92197bdeeb8dd5?s=256&d=mm" style="width:127px" />
+            <h3 title="">
+                <p th:text="${user.nickname}">nickname</p>
+            </h3>
+            <div class="description">
+                    <p id="yiyan">获取中...</p>
+                    <p th:text="${user.sign}">个性签名在这里...</p>
+            </div>
+        </div>
+    </div>
+
+<!-- social-list.ftl -->
+<ul class="social-links">
+
+    <li>
+        <a target="_blank" href="#">
+            <i class="fa fa-rss"></i>
+        </a>
+    </li>
+        <li>
+            <a target="_blank" href="#">
+                <i class="fa fa-qq"></i>
+            </a>
+        </li>
+
+        <li>
+            <a target="_blank" href="https://t.me/${settings.telegram}">
+                <i class="fa fa-telegram"></i>
+            </a>
+        </li>
+
+        <li>
+            <a target="_blank" href="mailto:${settings.email}">
+                <i class="fa fa-envelope"></i>
+            </a>
+        </li>
+
+        <li>
+            <a target="_blank" href="https://github.com/${settings.github}">
+                <i class="fa fa-github"></i>
+            </a>
+        </li>
+</ul>
+
+<!-- social-list over -->
+
+    <div class="footer">
+        <a target="_blank" href="#">
+            <span>Designed by </span>
+            <a href="#">Nusoft</a>
+            <div class="by_halo">
+                <a href="https://github.com/catchchen/" target="_blank">Github chenkaiqi account</a>
+            </div>
+<!--  side- footer-->
+            <div class="footer_text">
+                <div th:replace="fragments/footer :: footer"></div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="main">
+<div class="page-top animated fadeInDown">
+    <div class="nav">
+
+                <li>
+                    <a href="/user-lgoin" target="">管理文章</a>
+                </li>
+                <li>
+                    <a href="/index" target="_blank">首页</a>
+                </li>
+
+    </div>
+    <div class="information">
+        <div class="back_btn">
+            <li>
+                <a onclick="window.history.go(-1)" style="display: none" class="fa fa-chevron-left"></a>
+            </li>
+        </div>
+        <div class="avatar">
+            <img src="//cn.gravatar.com/avatar/01dd5503de8765d3dc92197bdeeb8dd5?s=256&d=mm" />
+        </div>
+        <div class="searchbox">
+            <form method="get" action="/search" role="search">
+                <input class="searchtxt" type="search" name="keyword" placeholder="Search" required>
+                <a class="searchbtn" href="#"><i class="fa fa-search"></i></a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+ <!-- page-top over -->
+
+
+    <div class="autopagerize_page_element">
+        <div class="content">
+            <div class="archive animated fadeInDown" th:each="post : ${posts}">
+                <ul class="list-with-title">
+                        <div class="listing-title" th:text="${post.summary}"></div>
+                        <ul class="listing">
+                                <div class="listing-item">
+                                    <div class="listing-post">
+                                        <a href="${post.fullPath!}" title="${post.title!}" th:text="${post.title}"></a>
+                                        <div class="post-time">
+                                            <span class="date">${post.createTime?string("yyyy-MM-dd")}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                        </ul>
+                </ul>
+            </div>
+                <div class="pagination">
+                    <ul class="clearfix">
+                            <li class="pre pagbuttons">
+                                <a class="btn" role="navigation" href="${pagination.prevPageFullPath!}">上一页</a>
+                            </li>
+
+                            <li class="next pagbuttons">
+                                <a class="btn" role="navigation" href="${pagination.nextPageFullPath!}">下一页</a>
+                            </li>
+
+                    </ul>
+                </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="source/js/jquert.min.js"></script>
+<script type="text/javascript">
+    var url = location.href;
+    var urlstatus = false;
+    $(".nav li a").each(function () {
+        if ((url + '/').indexOf($(this).attr('href')) > -1 && $(this).attr('href') != '/') {
+            $(this).addClass('current');
+            urlstatus = true;
+        } else {
+            $(this).removeClass('current');
+        }
+    });
+    if (!urlstatus) {
+        $(".nav li a").eq(0).addClass('current');
+    }
+
+	  var xhr = new XMLHttpRequest();
+	  xhr.open('get', 'https://v1.hitokoto.cn');
+	  xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+              var data = JSON.parse(xhr.responseText);
+              var yiyan = document.getElementById('yiyan');
+              yiyan.innerText = data.hitokoto+"        -「"+data.from+"」";
+          }
+      };
+	  xhr.send();
+</script>
+
+
+
+
+
+</body>
+</html>

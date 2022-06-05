@@ -1,34 +1,33 @@
-import service from '@/utils/service'
+import axios from 'axios'
 
-const baseUrl = '/api/user'
-
+const baseUrl = '/api'
 
 const userApi = {}
 
-userApi.getProfile = () => {
-  return service({
+userApi.postArticle = () => {
+  return a({
     url: `${baseUrl}/profiles`,
     method: 'get'
   })
 }
 
-userApi.updateProfile = profile => {
-  return service({
-    url: `${baseUrl}/profiles`,
-    method: 'put',
-    data: profile
-  })
-}
-
-userApi.updatePassword = (oldPassword, newPassword) => {
-  return service({
-    url: `${baseUrl}/profiles/password`,
-    method: 'put',
-    data: {
-      oldPassword: oldPassword,
-      newPassword: newPassword
-    }
-  })
-}
+// userApi.updateProfile = profile => {
+//   return service({
+//     url: `${baseUrl}/profiles`,
+//     method: 'put',
+//     data: profile
+//   })
+// }
+//
+// userApi.updatePassword = (oldPassword, newPassword) => {
+//   return service({
+//     url: `${baseUrl}/profiles/password`,
+//     method: 'put',
+//     data: {
+//       oldPassword: oldPassword,
+//       newPassword: newPassword
+//     }
+//   })
+// }
 
 export default userApi

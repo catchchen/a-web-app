@@ -3,6 +3,7 @@ package zx.app.web.service.inter;
 import org.springframework.lang.NonNull;
 import zx.app.web.model.RegisterFormParams;
 import zx.app.web.model.entity.User;
+import zx.app.web.model.vo.UserVo;
 
 import java.util.List;
 
@@ -19,11 +20,13 @@ public interface UserService {
 
     void setPassword(User user, String plainPassword);
 
-    User createBy(RegisterFormParams rfp);
+    int createBy(User user);
 
     List getUserList();
 
     List<User> getTopUsers();
 
     User getUserById(Integer id);
+
+    List<UserVo> getUserVoList();
 }

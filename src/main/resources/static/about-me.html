@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>大连东软信息学院- 计算机科学- 陈凯麒</title>
+</head>
+<body>
+<header>mememe</header>
+<h2>name</h2>
+<main>
+  <content></content>
+  <p></p>
+</main>
+<footer></footer>
+</body>
+<script src="../public/js/jquery/jquery-2.2.4.min.js"></script>
+<script>
+  $.get("/")
+</script>
+
+<script>
+    // 访问 一言 接口
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'http://127.0.0.1:9090/hello');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            console.log(xhr.responseType)
+            console.log(xhr.response)
+            console.log(xhr.responseText)
+            var data = JSON.parse(xhr.responseText);
+            var yiyan = document.getElementsByName('content')[0];
+            yiyan.innerText = data;
+        }
+    };
+    xhr.send();
+</script>
+
+</html>

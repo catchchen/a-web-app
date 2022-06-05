@@ -33,7 +33,6 @@ public class UserRestfulController {
         }
         return Response.fail("用户名或密码错误");
     }
-
     /**
      * 修改用户信息
      * @param user

@@ -4,18 +4,19 @@ public enum ArticleStatus implements ValueEnum<Integer>{
     /**
      * 已发布
      */
-    PUBLISHED(0),
+    PUBLISHED(1),
 
     /**
-     * Auditing status. 需要继续编写的
+     * editing 需要继续编写的
      */
-    AUDITING(1),
-
+    EDITING(2),
     /**
      * 回收站
      */
-    RECYCLE(2);
+    RECYCLE(3),
 
+
+    DELETE(4);
     private final Integer value;
 
     ArticleStatus(Integer value) {

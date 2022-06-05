@@ -1,30 +1,58 @@
 <template>
 <div>
   <h2>Editor</h2>
+  <div class="mb-4">
+  <a-input v-model="postToStage.title" placeholder="请输入文章标题" size="large" />
+  </div>
   <markdown-editor
-  :originalContent="originalContent"
+  :originalContent="postToStage.originalContent"
+  @onSaveDraft="handleSave(true)"
+  @onContentChange="onContentChange"
   />
+  <Button @click="handlePostArticle" text="发布"></Button>
 </div>
 </template>
 
 <script>
-// import { mixin, mixinDevice } from '@/mixins/mixin.js'
-
-// import PostSettingDrawer from './components/PostSettingDrawer'
-// import AttachmentDrawer from '../attachment/components/AttachmentDrawer'
+import api from ''
+import  Button from '@/components/Button'
 import MarkdownEditor from '@/components/Editor/MarkdownEditor'
-// import { PageView } from '@/layouts'
-
-// import postApi from '@/api/post'
 export default {
   name: 'PostEditor',
   components: {
     MarkdownEditor,
-  },
+    Button
+  },cls
+
   data () {
     return {
-      originalContent: ''
+      title: '',
+      postToStage: {
+        title: '',
+        originalContent: ''
+      },
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    // 编辑情况 router中传入 query 文章id 获取文章内容
+    const postId = to.query.postId
+    next(async vm => {
+      if (postId) {
+        const { data } = this.$axios.get(Number(postId))
+            //await apiClient.post.get(Number(postId))
+        vm.postToStage = data
+      }
+    })
+  },
+  methods: {
+    handlePostArticle () {
+
+    },
+    onContentChange(val) {
+      this.postToStage.originalContent = val
+      console.log(val)
+    },
   }
+
 }
 </script>

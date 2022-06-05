@@ -7,9 +7,9 @@ import lombok.Data;
  */
 @Data
 public class UserVo {
-
     private String username;
     private String email;
-    private Integer status;
-
+    private Integer state;
+    // 用户文章数量
+    private Integer count;
 }

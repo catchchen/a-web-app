@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="zx.app.web.mapper.UserMapper">
-<select id="findBy" parameterType="string" resultType="zx.app.web.model.entity.User">
+<select id="findByEmail" parameterType="string" resultType="zx.app.web.model.entity.User">
     select u.id,
            u.username,
-           u.emai,
+           u.email,
            u.password,
            u.create_time        createTime,
            u.state,
@@ -13,13 +13,13 @@
            u.grade,
            u.expire,
            u.attr3
-    FROM users u
+    FROM users u WHEN u.email = #{email}
 </select>
 
 <select id="findByUsername" parameterType="string" resultType="zx.app.web.model.entity.User">
     select u.id,
            u.username,
-           u.emai,
+           u.email,
            u.password,
            u.create_time        createTime,
            u.state,
@@ -30,10 +30,10 @@
            u.attr3
     FROM users u where u.username = #{username}
 </select>
-<select id="findUserBy" parameterType="zx.app.web.model.UserQuery" resultType="zx.app.web.model.entity.User">
+<select id="findUserBy" parameterType="zx.app.web.model.UserQuery" resultType="arraylist">
     select u.id,
            u.username,
-           u.emai,
+           u.email,
            u.password,
            u.create_time        createTime,
            u.state,
@@ -44,17 +44,47 @@
            u.attr3
     FROM users u where u.expire = 1
        <if test="userQuery.username != null and userQuery.username != ''">
-           AND u.username = #{userQuery.username}
+           AND u.username like CONCAT('%',#{userQuery.username},'%')
        </if>
        <if test="userQuery.email != null and userQuery.email != ''">
-              AND u.username = #{userQuery.email}
+            AND u.email like CONCAT('%',#{userQuery.email},'%')
        </if>
        <if test="userQuery.createTimeFrom != null ">
               AND u.create_time &gt; #{userQuery.createTimeFrom}
        </if>
        <if test="userQuery.createTimeTo != null ">
-              AND u.username = #{userQuery.createTimeTo}
+              AND u.create_time &lt;  #{userQuery.createTimeTo}
        </if>
     order by u.create_time desc
 </select>
+
+<select id="findTopUsers" resultType="zx.app.web.model.entity.User">
+    select * from users u order by u.grade desc ,u.create_time asc limit 0 , 3
+</select>
+
+<insert id="insertUser" parameterType="zx.app.web.model.entity.User"
+        useGeneratedKeys="true" keyProperty="id">
+    insert into users(
+        username,
+        email,
+        password,
+        create_time,
+        state,
+        sign,
+        update_time,
+        grade,
+        expire,
+        attr3
+    ) values('${username}', '${email}','${password}', NOW(), DEFAULT , '${sign}',NOW(), 10000 ,DEFAULT ,'...')
+</insert>
+
+    <select id="selectUserVo" resultType="zx.app.web.model.vo.UserVo">
+        select u.username,
+               u.email,
+               u.state,
+               count(a.userId) 'count'
+        from users u left join article a on u.id = a.userId
+        group by a.userId
+    </select>
+
 </mapper>

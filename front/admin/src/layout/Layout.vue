@@ -10,7 +10,7 @@
               用户管理
             </span>
           </template>
-          <a-menu-item key="1">用户列表</a-menu-item>
+          <a-menu-item key="1" >用户列表</a-menu-item>
           <a-menu-item key="2">用户信息</a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub2">
@@ -20,18 +20,18 @@
               文章管理
             </span>
           </template>
-          <a-menu-item key="5">文章列表</a-menu-item>
-          <a-menu-item key="6">发布文章</a-menu-item>
+          <a-menu-item key="5"><router-link to="">文章列表</router-link></a-menu-item>
+          <a-menu-item key="6" >发布文章</a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub3">
           <template #title>
             <video-camera-outlined />
             <span>
-              video
+              数据监控
             </span>
           </template>
-          <a-menu-item key="7">vi列表</a-menu-item>
-          <a-menu-item key="8">vi文章</a-menu-item>
+          <a-menu-item key="7">发布文章数</a-menu-item>
+          <a-menu-item key="8">用户数</a-menu-item>
         </a-sub-menu>
       </a-menu>
     </a-layout-sider>
@@ -46,9 +46,8 @@
         <!-- 面包屑 -->
         <a-layout style="padding: 0 24px 24px">
           <a-breadcrumb style="margin: 16px 0">
+            <a-breadcrumb-item>admin</a-breadcrumb-item>
             <a-breadcrumb-item>Home</a-breadcrumb-item>
-            <a-breadcrumb-item>List</a-breadcrumb-item>
-            <a-breadcrumb-item>App</a-breadcrumb-item>
           </a-breadcrumb>
           <!-- Content -->
           <a-layout-content :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }">

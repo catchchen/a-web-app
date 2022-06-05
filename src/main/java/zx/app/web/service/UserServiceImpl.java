@@ -3,8 +3,11 @@ package zx.app.web.service;
 import cn.hutool.crypto.digest.BCrypt;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import zx.app.web.mapper.UserMapper;
 import zx.app.web.model.RegisterFormParams;
 import zx.app.web.model.entity.User;
+import zx.app.web.model.vo.UserVo;
 import zx.app.web.service.inter.UserService;
 
 import java.util.List;
@@ -15,14 +18,18 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
+    private final UserMapper userMapper;
+    public UserServiceImpl(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
     @Override
-    public User getUserByUsername(String account) {
-        return null;
+    public User getUserByUsername(String username) {
+        return userMapper.findByUsername(username);
     }
 
     @Override
-    public User getUserByEmail(String account) {
-        return null;
+    public User getUserByEmail(String email) {
+        return userMapper.findByEmail(email);
     }
 
     @Override
@@ -30,30 +37,38 @@ public class UserServiceImpl implements UserService {
         return !StringUtils.isBlank(plainPassword)
                 && BCrypt.checkpw(plainPassword, user.getPassword());
     }
+
     @Override
     public void setPassword(User user, String plainPassword) {
         // 使用 非对称加盐加密方式 对密码进行加密处理
         user.setPassword(BCrypt.hashpw(plainPassword, BCrypt.gensalt()));
     }
 
+    @Transactional
     @Override
-    public User createBy(RegisterFormParams rfp) {
-        return null;
+    public int createBy(User user) {
+        int i = userMapper.insertUser(user);
+        return i;
     }
 
     @Override
     public List getUserList() {
-        return null;
+        return userMapper.selectUsers();
     }
 
     @Override
     public List<User> getTopUsers() {
-        return null;
+        return userMapper.findTopUsers();
     }
 
     @Override
     public User getUserById(Integer id) {
         return null;
+    }
+
+    @Override
+    public List<UserVo> getUserVoList() {
+        return userMapper.selectUserVo();
     }
 
 }

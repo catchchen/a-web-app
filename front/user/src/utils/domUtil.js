@@ -15,5 +15,5 @@ export const setDocumentTitle = function(title) {
     document.body.appendChild(i)
   }
 }
-
-export const domTitle = 'Computer Knowledge share Dashboard'
+// 将配置抽离
+export const domTitle = 'Computer Knowledge share'

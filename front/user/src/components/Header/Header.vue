@@ -1,5 +1,4 @@
 <template>
-
 <div>
   <transition name="showHeader">
     header

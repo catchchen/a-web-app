@@ -1,3 +1,5 @@
+server:
+  port: 9090
 spring:
   thymeleaf:
     cache: false
@@ -9,13 +11,14 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/zxdb?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
   devtools:
     restart:
-      enabled: true
+      enabled: false
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 mybatis:
   mapper-locations: classpath:/mapper/*.xml
   configuration:
     map-underscore-to-camel-case: on
   type-aliases-package: com.ch.model.entity
-
 pagehelper:
   helper-dialect: mysql
   reasonable: true

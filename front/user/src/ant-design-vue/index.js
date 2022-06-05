@@ -18,12 +18,12 @@ import {
   // Form,
   // FormModel,
   Icon,
-  // Input,
+  Input,
   // InputNumber,
   Layout,
   // List,
   // LocaleProvider,
-  // message,
+  message,
   Menu,
   // Modal,
   // notification,
@@ -53,10 +53,11 @@ import {
   // Empty,
   // Result,
   // Space
+    Table
 } from 'ant-design-vue'
 
 Vue.use(Affix)
-// Vue.use(Anchor)
+Vue.use(Table)
 // Vue.use(AutoComplete)
 // Vue.use(Alert)
 Vue.use(Avatar)
@@ -74,7 +75,7 @@ Vue.use(Dropdown)
 // Vue.use(Form)
 // // Vue.use(FormModel)
 Vue.use(Icon)
-// Vue.use(Input)
+Vue.use(Input)
 // Vue.use(InputNumber)
 Vue.use(Layout)
 // Vue.use(List)
@@ -108,11 +109,11 @@ Vue.use(Row)
 // Vue.use(Space)
 
 // message config
-// message.config({
-//   maxCount: 1
-// })
+message.config({
+  maxCount: 1
+})
 
-// Vue.prototype.$message = message
+Vue.prototype.$message = message
 // Vue.prototype.$notification = notification
 // Vue.prototype.$info = Modal.info
 // Vue.prototype.$success = Modal.success

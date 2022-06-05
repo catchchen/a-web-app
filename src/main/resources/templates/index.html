@@ -16,7 +16,7 @@
 </div>
 <!-- header -->
 <div th:replace="fragments/header :: header"></div>
-<!-- #####  Start ##### -->
+
 <div class="blog-wrapper section-padding-100 clearfix">
     <div class="container">
         <div class="row align-items-end">
@@ -33,13 +33,13 @@
 <!--                    </div>-->
                 </div>
             </div>
-            <!-- Single Blog Area -->
+
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-catagory-area clearfix mb-100">
                     <img src="img/blog-img/1.jpg" alt="">
                     <!-- Catagory Title -->
                     <div class="catagory-title">
-                        <a href="#">网站使用 入门教程</a>
+                        <a href="#">网站使用入门教程</a>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-catagory-area clearfix mb-100">
                     <img th:src="@{img/blog-img/2.jpg}" alt="">
-                    <!-- Catagory Title -->
+                    <!-- sort title -->
                     <div class="catagory-title">
                         <a href="#">how to use this posts website</a>
                     </div>
@@ -65,21 +65,21 @@
                     <div class="row align-items-center">
                         <div class="col-12 col-md-6">
                             <div class="single-blog-thumbnail">
-                                <img src="img/blog-img/3.jpg" alt="">
+                                <img src="img/blog-img/3.png" alt="">
                                 <div class="post-date">
-                                    <a href="#">12 <span>Top</span></a>
+                                    <a href="#">1 <span>Top</span></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <!-- Blog Content -->
-                            <div class="single-blog-content">
+                            <!-- Article Content -->
+                            <div class="single-blog-content" th:each="post : ${posts}">
                                 <div class="line"></div>
-                                <a href="#" class="post-tag">Lifestyle</a>
-                                <h4><a href="#" class="post-headline">people in the world not alone</a></h4>
-                                <p>something.........................</p>
+                                <a href="#" class="post-tag">标题</a>
+                                <h4><a href="#" class="post-headline">投入时间用在学习上自我提升</a></h4>
+                                <p th:text="">something</p>
                                 <div class="post-meta">
-                                    <p>By <a href="#">some onne</a></p>
+                                    <p>By <a href="#">some one ....</a></p>
                                     <p>3 comments</p>  <p>99 likes</p>
                                 </div>
                             </div>
@@ -94,17 +94,17 @@
                             <div class="single-blog-thumbnail">
                                 <img th:src="@{img/blog-img/future-to-live-better.png}" src="img/blog-img/4.jpg" alt="">
                                 <div class="post-date">
-                                    <a href="#">1 <span>top</span></a>
+                                    <a href="#">2 <span>top</span></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <!-- Blog Content -->
+                            <!-- Article Content -->
                             <div class="single-blog-content">
                                 <div class="line"></div>
                                 <a href="#" class="post-tag">Lifestyle</a>
-                                <h4><a href="#" class="post-headline">Welcome to our </a></h4>
-                                <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.</p>
+                                <h4><a href="#" class="post-headline">欢迎来到这个知识分享的网站 </a></h4>
+                                <p>文章介绍了如何使用网站可以进行快速学习</p>
                                 <div class="post-meta">
                                     <p>By <a href="#">james smith</a></p>
                                     <p>3 comments</p>
@@ -157,8 +157,9 @@
                             <div class="single-blog-content">
                                 <div class="line"></div>
                                 <a href="#" class="post-tag">this about yourself</a>
-                                <h4><a href="#" class="post-headline">All people in the word need to share</a></h4>
-                                <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.</p>
+                                <h4><a href="#" class="post-headline">分享知识是相当于学习一遍知识</a></h4>
+
+                                <p>知识的意义在于获取学习和实践他 </p>
                                 <div class="post-meta">
                                     <p>By <a href="#">james smith</a></p>
                                     <p>3 comments</p>
@@ -217,8 +218,8 @@
                     <div class="sidebar-widget-area">
                         <h5 class="title subscribe-title">加入我们</h5>
                         <div class="widget-content">
-                                <input type="email" name="email" id="subscribesForm" placeholder="Your e-mail here">
-                                <a th:href="@{/register.html}" href="../static/register.html"><button class="btn original-btn">注册</button></a>
+<!--                                <input type="email" name="email" id="subscribesForm" placeholder="Your e-mail here">-->
+
                         </div>
                     </div>
 
@@ -324,9 +325,8 @@
         </div>
     </div>
 </div>
-<!-- ##### Blog End ##### -->
 
-<!-- ##### Footer Area Start ##### -->
+<!-- ##### Footer ##### -->
 <div th:replace="fragments/footer :: footer"></div>
 
 <script>
@@ -342,7 +342,6 @@
     };
     xhr.send();
 </script>
-
 
 <!-- jQuery (Necessary for All JavaScript Plugins) -->
 <script th:src="@{/js/jquery/jquery-2.2.4.min.js}" src="../public/js/jquery/jquery-2.2.4.min.js"></script>

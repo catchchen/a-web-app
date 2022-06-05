@@ -3,8 +3,8 @@ module.exports = {
         port: 8888,
         open: false,
         proxy: {
-            '/': {
-                target: 'http://localhost:9090',
+            '/api/admin': {
+                target: 'http://localhost:9090/',
                 secure: false,
                 changeOrigin: true,
             }
