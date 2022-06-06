@@ -26,7 +26,7 @@ import {
   message,
   Menu,
   // Modal,
-  // notification,
+  notification,
   PageHeader,
   // Pagination,
   // Popconfirm,
@@ -109,12 +109,12 @@ Vue.use(Row)
 // Vue.use(Space)
 
 // message config
-message.config({
-  maxCount: 1
-})
+// message.config({
+//   maxCount: 1
+// })
 
 Vue.prototype.$message = message
-// Vue.prototype.$notification = notification
+Vue.prototype.$notification = notification
 // Vue.prototype.$info = Modal.info
 // Vue.prototype.$success = Modal.success
 // Vue.prototype.$error = Modal.error

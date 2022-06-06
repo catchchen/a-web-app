@@ -1,32 +1,32 @@
 <template>
   <a-layout class="app-wapper">
 <!--    left side bar-->
-    <a-layout-sider class="app-sider" :trigger="null" v-model:collapsed="collapsed" collapsible>
-      <a-menu theme="dark" mode="inline" :style="{ height: '100%', borderRight: 0 }">
+<!--    <a-layout-sider class="app-sider" :trigger="null" v-model:collapsed="collapsed" collapsible>-->
+      <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
+      <a-menu theme="dark"
+              mode="horizontal"
+              :default-selected-keys="['2']"
+              :style="{ lineHeight: '64px' }">
         <a-menu-item key="1">
           <a-icon type="user" />
           <span>我的信息</span>
         </a-menu-item>
         <a-menu-item key="2">
           <a-icon type="video-camera" />
-          <span>编辑文章</span>
+          <span><router-link to="/write">编辑文章</router-link></span>
         </a-menu-item>
         <a-menu-item key="3">
           <a-icon type="upload" />
           <span><router-link to="/list">文章管理</router-link></span>
         </a-menu-item>
+        <a-menu-item key="4">
+          <span><a href="http://localhost:9090/">回到主页</a></span>
+        </a-menu-item>
       </a-menu>
-    </a-layout-sider>
-    <a-layout>
-      <a-layout-header style="background: #fff; padding: 0">
-        <a-icon
-            class="trigger"
-            :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-            @click="() => (collapsed = !collapsed)"
-        />
       </a-layout-header>
+    <a-layout>
       <a-layout-content
-          :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
+          :style="{ margin: '46px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
       >
         <router-view />
       </a-layout-content>
@@ -55,23 +55,31 @@ export default {
 
 <style lang="less">
 @import url('../style/global.less');
+
+#components-layout-demo-fixed {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 24px 16px 0;
+  float: left;
+}
+
 .app-wapper {
-  .app-sider {
-    left: 0;
-    height: 100vh;
-    overflow: auto;
-  }
-  .app-header{
-    padding: 0;
-    background: #fff;
-    .trigger {
-      font-size: 18px;
-      line-height: 64px;
-      padding:0 24px;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-  }
+  //.app-sider {
+  //  left: 0;
+
+  //}
+  //.app-header{
+  //  padding: 0;
+  //  background: #fff;
+  //  .trigger {
+  //    font-size: 18px;
+  //    line-height: 64px;
+  //    padding:0 24px;
+  //    cursor: pointer;
+  //    transition: color 0.3s;
+  //  }
+  //}
 }
 
 </style>

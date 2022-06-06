@@ -2,7 +2,7 @@
   <div>
     <h2>文章列表</h2>
     <div style="margin-bottom: 16px">
-<!--      使用  expire 控制 用户写文章的状态-->
+<!-- 使用 expire 控制 用户写文章的状态-->
       <a-button type="primary" :disabled="!true" :loading="loading" @click="editorArticle">
         <router-link to="/write">
           写文章

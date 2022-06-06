@@ -12,7 +12,7 @@ const getters = {
       return state.app.apiUrl
     }
     // ${window.location.protocol}//${window.location.host}
-    return `http://localhost:8010`
+    return `http://localhost:9090`
   },
   // options: state => state.option.options
 }

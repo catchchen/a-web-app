@@ -1,15 +1,19 @@
 import axios from 'axios'
+import Vue from 'vue'
 
-const baseUrl = '/api'
+// 响应拦截
+axios.interceptors.response.use(res => {
+  return res.data
+})
 
-const userApi = {}
+Vue.prototype.$axios = axios
 
-userApi.postArticle = () => {
-  return a({
-    url: `${baseUrl}/profiles`,
-    method: 'get'
-  })
-}
+// userApi.postArticle = () => {
+//   return a({
+//     url: `${baseUrl}/article`,
+//     method: 'get'
+//   })
+// }
 
 // userApi.updateProfile = profile => {
 //   return service({
@@ -29,5 +33,3 @@ userApi.postArticle = () => {
 //     }
 //   })
 // }
-
-export default userApi

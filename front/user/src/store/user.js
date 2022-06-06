@@ -1,7 +1,5 @@
-import Vue from 'vue'
-import { ACCESS_TOKEN, USER } from '../store/mutation-type'
-// import adminApi from '@/api/admin'
-// import userApi from '@/api/user'
+// import Vue from 'vue'
+// import { ACCESS_TOKEN, USER } from '../store/mutation-type'
 
 const user = {
   state: {
@@ -10,15 +8,15 @@ const user = {
   },
   mutations: {
     SET_TOKEN: (state, token) => {
-      Vue.ls.set(ACCESS_TOKEN, token, token ? token.expired_in * 1000 : null)
+      // Vue.ls.set(ACCESS_TOKEN, token, token ? token.expired_in * 1000 : null)
       state.token = token
     },
     CLEAR_TOKEN: state => {
-      Vue.ls.remove(ACCESS_TOKEN)
+      // Vue.ls.remove(ACCESS_TOKEN)
       state.token = null
     },
     SET_USER: (state, user) => {
-      Vue.ls.set(USER, user)
+      // Vue.ls.set(USER, user)
       state.user = user
     }
   },

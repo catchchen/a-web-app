@@ -1,6 +1,5 @@
 <template>
 <div>
-  <h2>Editor</h2>
   <div class="mb-4">
   <a-input v-model="postToStage.title" placeholder="请输入文章标题" size="large" />
   </div>
@@ -14,7 +13,6 @@
 </template>
 
 <script>
-import api from ''
 import  Button from '@/components/Button'
 import MarkdownEditor from '@/components/Editor/MarkdownEditor'
 export default {
@@ -22,8 +20,7 @@ export default {
   components: {
     MarkdownEditor,
     Button
-  },cls
-
+  },
   data () {
     return {
       title: '',
@@ -56,3 +53,12 @@ export default {
 
 }
 </script>
+
+<style lang="less">
+@import url('../../style/global.less');
+.h-full{
+    height: 100vh;
+    overflow: auto;
+}
+
+</style>
