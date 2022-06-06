@@ -9,13 +9,11 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 import zx.app.web.service.inter.AttachmentService;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.util.ResourceUtils;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.UUID;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * @author chenk

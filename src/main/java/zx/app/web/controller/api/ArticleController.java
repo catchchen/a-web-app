@@ -2,7 +2,7 @@ package zx.app.web.controller.api;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
-import zx.app.web.model.Response;
+import zx.app.web.model.common.Response;
 import zx.app.web.model.common.ArticleStatus;
 import zx.app.web.model.dto.ArticleDTO;
 import zx.app.web.model.entity.Article;

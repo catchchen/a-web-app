@@ -1,4 +1,4 @@
-package zx.app.web.model;
+package zx.app.web.model.common;
 
 import org.springframework.http.HttpStatus;
 

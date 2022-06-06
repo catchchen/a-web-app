@@ -2,7 +2,7 @@ package zx.app.web.service;
 
 import org.springframework.stereotype.Service;
 import zx.app.web.mapper.ArticleMapper;
-import zx.app.web.model.Response;
+import zx.app.web.model.common.Response;
 import zx.app.web.model.common.ArticleStatus;
 import zx.app.web.model.dto.ArticleDTO;
 import zx.app.web.model.entity.Article;

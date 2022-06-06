@@ -28,3 +28,4 @@ public enum ArticleStatus implements ValueEnum<Integer>{
         return value;
     }
 }
+
