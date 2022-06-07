@@ -82,7 +82,7 @@
           if (xhr.readyState === 4) {
               var data = JSON.parse(xhr.responseText);
               var yiyan = document.getElementById('yiyan');
-              yiyan.innerText = data.hitokoto+"        -「"+data.from+"」";
+              yiyan.innerText = data.hitokoto+" -「"+data.from+"」";
           }
       };
 	  xhr.send();
@@ -141,9 +141,9 @@
     <div class="footer">
         <a target="_blank" href="#">
             <span>Designed by </span>
-            <a href="#">Nusoft</a>
+            <a href="#">Neusoft</a>
             <div class="by_halo">
-                <a href="https://github.com/catchchen/" target="_blank">Github chenkaiqi account</a>
+                <a href="https://github.com/catchchen/a-web-app" target="_blank">Github chenkaiqi account</a>
             </div>
 <!--  side- footer-->
             <div class="footer_text">
@@ -177,16 +177,21 @@
         <div class="searchbox">
             <form method="get" action="/search" role="search">
                 <input class="searchtxt" type="search" name="keyword" placeholder="Search" required>
-                <a class="searchbtn" href="#"><i class="fa fa-search"></i></a>
+                <a class="searchbtn" href="#"><i class="fa fa-search"></i>search</a>
             </form>
         </div>
     </div>
 </div>
 
-
  <!-- page-top over -->
-
-
+<!-- article content start-->
+<!--
+    逻辑 如果 有分页信息显示文章列表
+                 如果 分页信息 的值 是 多页数据显示上下页 标签
+       显示 单个文章内容 不是文章列表
+                        展示文章内容 信息
+                     如果可以显示评论文章的评论主键 文章
+-->
     <div class="autopagerize_page_element">
         <div class="content">
             <div class="archive animated fadeInDown" th:each="post : ${posts}">
@@ -195,15 +200,18 @@
                         <ul class="listing">
                                 <div class="listing-item">
                                     <div class="listing-post">
-                                        <a href="${post.fullPath!}" title="${post.title!}" th:text="${post.title}"></a>
+                                        <a href="${post.url!}" title="${post.title!}" th:text="${post.title}"></a>
                                         <div class="post-time">
-                                            <span class="date">${post.createTime?string("yyyy-MM-dd")}</span>
+                                            <span class="date" th:text="${#dates.format(post.updateTime, 'dd-MMM-yyyy')}">${post.updateTime?string("yyyy-MM-dd")}</span>
                                         </div>
                                     </div>
                                 </div>
                         </ul>
                 </ul>
             </div>
+<!--            <div th:if="${posts.isHasNextPage()}"></div>-->
+<!--            显示 下一页标签 -->
+
                 <div class="pagination">
                     <ul class="clearfix">
                             <li class="pre pagbuttons">
@@ -216,7 +224,10 @@
 
                     </ul>
                 </div>
+<!--            <div th:if="posts.isHasPreviousPage()"></div>-->
+<!--            显示 下一页标签-->
         </div>
+
     </div>
 </div>
 

@@ -41,35 +41,40 @@ public class UserController {
     }
 
     @GetMapping(value = "/user/{userId}/articles")
-    public String getArticleWithPageInfo(@PathVariable Integer id,
+    public String getArticleWithPageInfo(@PathVariable("userId") Integer id,
                                    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, // 做分页处理 页数
                                    @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize, //  默认一页五条数据
                                     ModelMap modelMap
     ){
         PageHelper.startPage(pageNum, pageSize);
+        User user = userService.getUserById(id);
         List<ArticleVo> artVos = articleService.getArticleVoByUserId(id);
         PageInfo<ArticleVo> pageInfo = new PageInfo<>(artVos);
         ResultArticlePage success = ResultArticlePage.success(pageInfo, pageInfo.getTotal());
-        modelMap.addAttribute("articleListInfo", success);
+        modelMap.addAttribute("user", user);
+        modelMap.addAttribute("posts", success);
         return "/article-page";
 //    return ResultWithPage.success(pageInfo.getList(),pageInfo.getTotal());
     }
 
 
     @GetMapping({"/index", "/"})
-    public String index(Model model ){
+    public String index(Model model , HttpSession session){
 //        ModelAndView mav = new ModelAndView();
-        model.addAttribute("users", userService.getTopUsers());
 //        model.addAttribute("curentUser" , userService.getUserById();
-
+        log.info("index ---> page website");
+        model.addAttribute("users", userService.getTopUsers());
         ArrayList<ArticleVo> articles =articleService.getHotsPost();
+        model.addAttribute("tops", articleService.getHotsPost());
+        model.addAttribute("latest", articleService.getLatestPosts());
+
 
 //        "index"
 /*        mav.addObject("user", new User());
 
         Article article = new Article();
 
-        log.info("index ---> page website");
+
         articles.add(article);
         // 默认添加 的文章 注册的时候进行的
         mav.addObject("posts",articles);*/
