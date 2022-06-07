@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import zx.app.web.model.Response;
-import zx.app.web.model.ResultWithPage;
 import zx.app.web.model.common.Admin;
 import zx.app.web.model.entity.User;
 import zx.app.web.model.vo.UserVo;
@@ -27,7 +26,7 @@ public class AdminController {
     private Admin admin;
     private final UserService userService;
     private final ArticleService articleService;
-//    private final CommentService commentService;
+
     public AdminController(UserService userService, ArticleService articleService, CommentService commentService) {
         this.userService = userService;
         this.articleService = articleService;
@@ -36,14 +35,11 @@ public class AdminController {
 
     /** user operation **/
     @GetMapping(value = "/users")
-    public ResultWithPage getUsers(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, // 做分页处理 页数
-                                   @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize //  默认 一页五条数据
-                                   ){
-        PageHelper.startPage(pageNum, pageSize);
+    public Response getUserVoList(){
+
     List<UserVo> userVos = userService.getUserVoList();
-    PageInfo<UserVo> pageInfo = new PageInfo<>(userVos);
-    return ResultWithPage.success(pageInfo,pageInfo.getTotal());
-//    return ResultWithPage.success(pageInfo.getList(),pageInfo.getTotal());
+
+    return Response.ok(userVos);
 }
 
     @DeleteMapping(value = "users/{userId}")
@@ -98,8 +94,7 @@ public class AdminController {
     public Response login(@RequestBody Admin admin) {
         if (this.admin.getUsername().equals(admin.getUsername()) && this.admin.getPassword().equals(admin.getPassword())) {
             return Response.ok("登录成功");
-        } else {
-            return Response.fail();
         }
+        return Response.fail();
     }
 }

@@ -54,7 +54,27 @@
            article art left join users u
                on art.userId = u.id order by art.likes limit 0 , 3
     </select>
-
+<select id="findLatestArticleVo" resultType="zx.app.web.model.vo.ArticleVo">
+    select
+              art.id,
+              art.title,
+              u.nickname,
+              art.summary,
+              art.update_time,
+              u.sign
+    from article art art left join users u on art.userId = u.id
+    order by create_time limit 0, 3;
+</select>
+    <select id="findArticleVoById" resultType="zx.app.web.model.vo.ArticleVo" parameterType="int">
+        select
+            art.id,
+            art.title,
+            u.nickname,
+            art.summary,
+            art.update_time,
+            u.sign
+        from article art left join users u on art.userId = u.id where art.id = #{param1}
+    </select>
     <insert id="insertArticle"  parameterType="zx.app.web.model.dto.ArticleDTO" useGeneratedKeys="true" keyProperty="id">
         insert into article(userId,
                             create_time,
@@ -66,7 +86,16 @@
                             url)
         values (#{userId},#{createTime}, #{updateTime},#{formatContent},#{originContent},#{summary},#{title})
     </insert>
-
+<select id="selectArticleVoListByUserId" resultType="zx.app.web.model.vo.ArticleVo">
+    select
+        art.id,
+        art.title,
+        u.nickname,
+        art.summary,
+        art.update_time,
+        u.sign
+    from article art left join users u on art.userId = u.id where art.userId = #{param1}
+</select>
 
 
     <update id="updateStatus">

@@ -22,7 +22,7 @@ Vue.prototype.$axios = axios
 //     data: profile
 //   })
 // }
-//
+
 // userApi.updatePassword = (oldPassword, newPassword) => {
 //   return service({
 //     url: `${baseUrl}/profiles/password`,

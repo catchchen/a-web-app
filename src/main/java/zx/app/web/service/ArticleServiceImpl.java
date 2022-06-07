@@ -37,12 +37,20 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void getArticleById(Integer id) {
+    public List<ArticleVo> getArticleVoByUserId(Integer id) {
+        List<ArticleVo> articleVos = articleMapper.selectArticleVoListByUserId(id);
+        return articleVos;
+    }
+
+    @Override
+    public ArticleVo getArticleVoById(Integer id) {
+        ArticleVo vo = articleMapper.findArticleVoById(id);
+        return vo;
     }
 
     @Override
     public List getLatestPosts() {
-        return null;
+        return articleMapper.findLatestArticleVo();
     }
 
 

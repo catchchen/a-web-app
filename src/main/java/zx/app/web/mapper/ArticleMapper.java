@@ -26,4 +26,11 @@ public interface ArticleMapper {
     int updateStatus(Integer id, ArticleStatus status);
 
     ArrayList<ArticleVo> findHotList();
+
+    List<ArticleVo> findLatestArticleVo();
+
+    ArticleVo findArticleVoById(Integer id);
+
+
+    List<ArticleVo> selectArticleVoListByUserId(Integer id);
 }

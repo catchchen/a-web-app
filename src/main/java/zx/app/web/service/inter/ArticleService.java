@@ -16,7 +16,9 @@ import java.util.List;
 public interface ArticleService {
     Response save(ArticleDTO articleDTO, Integer id);
 
-    void getArticleById(Integer id);
+    List<ArticleVo> getArticleVoByUserId(Integer id);
+
+    ArticleVo getArticleVoById(Integer id);
 
     List getLatestPosts();
 
