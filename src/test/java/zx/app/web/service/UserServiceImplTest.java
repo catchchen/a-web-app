@@ -48,9 +48,12 @@ class UserServiceImplTest {
 @Test
     void hashpwTest()
     {
-        User u= new User();
-        u.setPassword("123");
-        userService.setPassword(u, u.getPassword());
-        System.out.println(u.getPassword());
+//        User u= new User();
+//        u.setPassword("123");
+//        userService.setPassword(u, u.getPassword());
+//        System.out.println(u.getPassword());
+        User userById = userService.getUserById(1);
+        System.out.println(userById.getId());
+        System.out.println(userById.getNickname());
     }
 }

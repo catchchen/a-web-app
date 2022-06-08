@@ -3,8 +3,7 @@
 <head>
 </head>
 <body>
-<!-- /*  Multiple fragments may be defined in one file */-->
-
+<!-- /* fragments may be defined in one file */-->
 <footer class="footer-area text-center" th:fragment="footer">
     <div class="container">
         <div class="row">
@@ -13,27 +12,30 @@
                 <div class="classy-nav-container breakpoint-off">
                     <!-- Classy Menu -->
                     <nav class="classy-navbar justify-content-center">
-
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
                             <span class="navbarToggler"><span></span><span></span><span></span></span>
                         </div>
-
                         <!-- Menu -->
                         <div class="classy-menu">
-
                             <!-- close btn -->
                             <div class="classycloseIcon">
                                 <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                             </div>
-
+                            <span>Designed by </span>
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                                 <ul>
-                                    <li><a href="#">我的信息</a></li>
+                                    <li><a href="#">我的信息:</a></li>
                                     <li><a href="#">Neusoft</a></li>
                                 </ul>
+                                <div class="by_halo">
+                                    <a href="https://github.com/catchchen/a-web-app" target="_blank">chenkaiqi Github Repositories
+                                    </a>
+                                    <a href="https://github.com/catchchen/"></a>catch</a>
+                                    @ <script>document.write(new Date().getFullYear());</script>
+                                </div>
                             </div>
                             <!-- Nav End -->
                         </div>
@@ -44,8 +46,7 @@
         </div>
     </div>
 
-    <script>document.write(new Date().getFullYear());</script>
-    <a href="https://github.com/catchchen/"></a>catch chenkaiqi</a>
+
 
 </footer>
 </body>

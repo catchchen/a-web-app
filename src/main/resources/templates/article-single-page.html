@@ -1,0 +1,165 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <title>个人主页</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="author" content="{user.nickname!}" />
+
+    <link rel="stylesheet" th:href="@{/source/css/font-awesome/font-awesome.min.css}" href="../public/source/css/font-awesome/font-awesome.min.css">
+    <link th:href="@{/source/css/blog_basic.min.css}"  href="../public/source/css/blog_basic.min.css" rel="stylesheet">
+    <link th:href="@{/source/css/style.min.css}" href="../public/source/css/style.min.css" type="text/css" rel="stylesheet" />
+
+    <script type="text/javascript" th:src="@{/source/js/prism.min.js}" src="../public/source/js/prism.min.js"></script>
+    <!--    <link rel="alternate" type="application/rss+xml" title="atom 1.0" href="">-->
+    <style>
+        .post .post-title h3 {
+            text-transform: none;
+        }
+        .sidebar .logo-title .title h3 {
+            text-transform: none;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+            background-color: #eee;
+        }
+        ::-webkit-scrollbar-track {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<script type="text/javascript" th:src="@{/js/jquery/jquery-2.2.4.min.js}" src="../public/js/jquery/jquery-2.2.4.min.js"></script>
+<body>
+<!-- side bar  -->
+<div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+        <div class="title">
+            <img src="//cn.gravatar.com/avatar/01dd5503de8765d3dc92197bdeeb8dd5?s=256&d=mm" style="width:127px" />
+            <h3 title="">
+                <p th:text="${user.nickname}">nickname</p>
+            </h3>
+            <div class="description">
+                <p id="yiyan">获取中...</p>
+                <p th:text="${user.sign}">个性签名在这里...</p>
+            </div>
+        </div>
+    </div>
+
+    <ul class="social-links">
+        <li>
+            <a target="_blank" href="#">
+                <i class="fa fa-qq"></i>
+            </a>
+        </li>
+        <li>
+            <i class="fa fa-telegram"></i>
+            </a>
+        </li>
+        <li>
+            <a target="_blank" href="mailto:${settings.email}">
+                <i class="fa fa-envelope"></i>
+            </a>
+        </li>
+        <li>
+            <a target="_blank" href="https://github.com">
+                <i class="fa fa-github"></i>
+            </a>
+        </li>
+    </ul>
+
+    <!-- social-list over -->
+
+    <div class="footer">
+        <div class="footer_text">
+            <div th:replace="fragments/footer :: footer"></div>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="page-top animated fadeInDown">
+        <div class="nav">
+            <li>
+                <a href="/user-lgoin" target="">管理文章</a>
+            </li>
+            <li>
+                <a href="/index" target="_blank">首页</a>
+            </li>
+        </div>
+        <div class="information">
+            <div class="back_btn">
+                <li>
+                    <a onclick="window.history.go(-1)" style="display: none" class="fa fa-chevron-left"></a>
+                </li>
+            </div>
+            <div class="avatar">
+                <img src="//cn.gravatar.com/avatar/01dd5503de8765d3dc92197bdeeb8dd5?s=256&d=mm" />
+            </div>
+            <div class="searchbox">
+                <form method="get" action="/search" role="search">
+                    <input class="searchtxt" type="search" name="keyword" placeholder="Search" required>
+                    <a class="searchbtn" href="#"><i class="fa fa-search"></i>search</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- page-top over -->
+    <!-- article content start-->
+
+    <div class="autopagerize_page_element">
+        <div class="content">
+            <div class="archive animated fadeInDown" th:object="post">
+                <ul class="list-with-title">
+                    <ul class="listing">
+                        <div class="listing-item">
+                            <div class="listing-post">
+                                <a href="${post.url!}" title="${post.title!}" th:text="${post.title}"></a>
+                                <div class="listing-title" th:text="${post.formatContent}"></div>
+                                <div class="post-time">
+                                    <span class="date" th:text="${#dates.format(post.updateTime, 'yyyy-MMM-dd')}">${post.updateTime?string("yyyy-MM-dd")}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script type="text/javascript">
+    // var url = location.href;
+    // var urlstatus = false;
+    // $(".nav li a").each(function () {
+    //     if ((url + '/').indexOf($(this).attr('href')) > -1 && $(this).attr('href') != '/') {
+    //         $(this).addClass('current');
+    //         urlstatus = true;
+    //     } else {
+    //         $(this).removeClass('current');
+    //     }
+    // });
+    // if (!urlstatus) {
+    //     $(".nav li a").eq(0).addClass('current');
+    // }
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'https://v1.hitokoto.cn');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            var data = JSON.parse(xhr.responseText);
+            var yiyan = document.getElementById('yiyan');
+            yiyan.innerText = data.hitokoto+"        -「"+data.from+"」";
+        }
+    };
+    xhr.send();
+</script>
+
+</body>
+</html>

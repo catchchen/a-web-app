@@ -32,8 +32,8 @@
               <a href="#" data-toggle="tooltip" data-placement="bottom" title="Dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
               <a href="#" data-toggle="tooltip" data-placement="bottom" title="Behance"><i class="fa fa-behance" aria-hidden="true"></i></a>
               <!--                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>-->
-              <a th:href="@{about-me.html}" href="../static/about-me.html">about my information</a>
-              <a href="../static/register.html" class="btn subscribe-btn">注册进入<i class="fa fa-linkedin" aria-hidden="true"></i></a>
+              <a th:href="@{about-me.html}" href="../static/about-me.html">about me</a>
+              <a href="../static/register.html" title="register" class="">注册<i class="fa fa-linkedin" aria-hidden="true"></i>to</a>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
               <li th:each="user,stat: ${users}">
 <!--                th:text="${user.username}" 变量表达式 下面使用行内写法-->
                 <div>No.
-                  <span th:text="${stat.count}"></span><span> :</span>[[${user.username}]]<span>- 积分:[[${user.grade}]]</span>
+                  <span th:text="${stat.count}"></span><span> :</span>[[${user.username}]]<span>- 发布数量:[[${user.grade}]]</span>
                 </div>
               </li>
             </ol>
@@ -84,13 +84,13 @@
                   <li><a th:href="@{/}">首页</a></li>
                   <li><a th:href="@{/user-home}">个人中心</a>
                     <ul class="dropdown">
-                      <li><a href="index.html">Home</a></li>
-                      <li><a href="about-us.html">About Us</a></li>
+                      <li><a href="index.html">信息管理</a></li>
+                      <li><a href="about-us.html">文章管理</a></li>
                     </ul>
                   </li>
-                  <li><a href="about-us.html">关于我们</a></li>
+                  <li><a href="about-us.html">关于我</a></li>
 
-                  <li><a href="contact.html">联系我们</a></li>
+                  <li><a href="contact.html">注册</a></li>
                 </ul>
               </div>
               <!-- Nav End -->

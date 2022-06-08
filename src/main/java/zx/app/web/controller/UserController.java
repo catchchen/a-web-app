@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import zx.app.web.model.RegisterFormParams;
 import zx.app.web.model.ResultArticlePage;
 import zx.app.web.model.entity.Article;
@@ -50,10 +49,14 @@ public class UserController {
         User user = userService.getUserById(id);
         List<ArticleVo> artVos = articleService.getArticleVoByUserId(id);
         PageInfo<ArticleVo> pageInfo = new PageInfo<>(artVos);
-        ResultArticlePage success = ResultArticlePage.success(pageInfo, pageInfo.getTotal());
+
+        ResultArticlePage success =
+                ResultArticlePage.success(pageInfo.getList(),
+                        pageInfo.getTotal(),
+                        pageInfo.isHasPreviousPage(), pageInfo.isHasNextPage());
         modelMap.addAttribute("user", user);
         modelMap.addAttribute("posts", success);
-        return "/article-page";
+        return "article-page";
 //    return ResultWithPage.success(pageInfo.getList(),pageInfo.getTotal());
     }
 
@@ -67,8 +70,6 @@ public class UserController {
         ArrayList<ArticleVo> articles =articleService.getHotsPost();
         model.addAttribute("tops", articleService.getHotsPost());
         model.addAttribute("latest", articleService.getLatestPosts());
-
-
 //        "index"
 /*        mav.addObject("user", new User());
 
@@ -111,13 +112,13 @@ public class UserController {
         User newUser = BeanUtil.transform(params, User.class);
         userService.setPassword(newUser, params.getPassword());
         int i = userService.createBy(newUser);
-        Article article = new Article();
-        article.setThumbnail("/upload/article/img/1.png");
-        article.setTitle("标题");
-        article.setSummary("你好！ " +
-                "这是你第一次使用 **Markdown编辑器** 所展示的欢迎页。" +
-                "如果你想学习如何使用Markdown编辑器, 可以仔细阅读这篇文章，" +
-                "了解一下Markdown的基本语法知识。");
+//        Article article = new Article();
+////        article.setThumbnail("/upload/article/img/1.png");
+//        article.setTitle("标题");
+//        article.setSummary("你好！ " +
+//                "这是你第一次使用 **Markdown编辑器** 所展示的欢迎页。" +
+//                "如果你想学习如何使用Markdown编辑器, 可以仔细阅读这篇文章，" +
+//                "了解一下Markdown的基本语法知识。");
         if(i > 0){
             log.info("userid:是不是{}", i);
             // 交给pageController 处理请求 返回登录界面

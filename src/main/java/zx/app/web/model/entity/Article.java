@@ -16,7 +16,6 @@ public class Article {
     private String formatContent;
     private String originContent;
     private String summary;
-    private String thumbnail;
     private Date createTime;
     private Date updateTime;
 

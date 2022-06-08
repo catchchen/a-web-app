@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(Integer id) {
-        return null;
+        return userMapper.findById(id);
     }
 
     @Override

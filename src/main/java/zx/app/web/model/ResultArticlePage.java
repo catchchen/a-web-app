@@ -10,17 +10,33 @@ import java.util.List;
 public class ResultArticlePage<D> {
     private D data;
     private Long total;
+    private boolean hasPreviousPage;
+    private boolean hasNextPage;
 
-    public ResultArticlePage(D data, Long total) {
-        this.data = data;
-        this.total = total;
+    public D getData() {
+        return data;
     }
 
-    public static <D> ResultArticlePage success(D data, Long total){
-        return new ResultArticlePage(data, total );
+    public boolean isHasPreviousPage() {
+        return hasPreviousPage;
+    }
+
+    public boolean isHasNextPage() {
+        return hasNextPage;
+    }
+
+    public ResultArticlePage(D data, Long total, boolean hasPreviousPage, boolean hasNextPage) {
+        this.data = data;
+        this.total = total;
+        this.hasPreviousPage=hasPreviousPage;
+        this.hasNextPage=hasNextPage;
+    }
+
+    public static <D> ResultArticlePage success(D data, Long total, boolean hasPreviousPage,boolean hasNextPage){
+        return new ResultArticlePage(data, total, hasPreviousPage, hasNextPage );
     }
 
     public static <D> ResultArticlePage fail() {
-        return new ResultArticlePage(null,0l);
+        return new ResultArticlePage(null,0l, false, false);
     }
 }

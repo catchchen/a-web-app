@@ -10,7 +10,6 @@
                art.slug,
                art.create_time          createTime,
                art.update_time          updateTime,
-               art.word_count           wordCount,
                art.visits,
                art.likes,
         FROM article art
@@ -62,8 +61,8 @@
               art.summary,
               art.update_time,
               u.sign
-    from article art art left join users u on art.userId = u.id
-    order by create_time limit 0, 3;
+    from article art left join users u on art.userId = u.id
+    order by art.create_time limit 0, 3;
 </select>
     <select id="findArticleVoById" resultType="zx.app.web.model.vo.ArticleVo" parameterType="int">
         select
@@ -99,5 +98,6 @@
 
 
     <update id="updateStatus">
+
     </update>
 </mapper>

@@ -9,39 +9,12 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="author" content="{user.nickname!}" />
 
-    <link rel="stylesheet" th:href="@{source/css/font-awesome/font-awesome.min.css}" href="source/css/font-awesome/font-awesome.min.css">
-    <link th:href="@{source/css/blog_basic.min.css}"  href="../public/source/css/blog_basic.min.css?version=88107691fe" rel="stylesheet">
-    <link th:href="@{source/css/style.min.css}" href="../public/source/css/style.min.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/source/css/font-awesome/font-awesome.min.css}" href="../public/source/css/font-awesome/font-awesome.min.css">
+    <link th:href="@{/source/css/blog_basic.min.css}"  href="../public/source/css/blog_basic.min.css" rel="stylesheet">
+    <link th:href="@{/source/css/style.min.css}" href="../public/source/css/style.min.css" type="text/css" rel="stylesheet" />
 
-      <script type="text/javascript" th:src="@{source/js/prism.min.js}" src="../public/source/js/prism.min.js"></script>
-        <style>
-            table {
-                border-spacing: 0;
-                border-collapse: collapse;
-                margin-top: 0;
-                margin-bottom: 16px;
-                display: block;
-                width: 100%;
-                overflow: auto;
-            }
-            table th {
-                font-weight: 600;
-            }
-            table th,
-            table td {
-                padding: 6px 13px;
-                border: 1px solid #dfe2e5;
-            }
-            table tr {
-                background-color: #fff;
-                border-top: 1px solid #c6cbd1;
-            }
-            table tr:nth-child(2n) {
-                background-color: #f6f8fa;
-            }
-        </style>
-
-    <link rel="alternate" type="application/rss+xml" title="atom 1.0" href="">
+      <script type="text/javascript" th:src="@{/source/js/prism.min.js}" src="../public/source/js/prism.min.js"></script>
+<!--    <link rel="alternate" type="application/rss+xml" title="atom 1.0" href="">-->
     <style>
         .post .post-title h3 {
             text-transform: none;
@@ -59,35 +32,8 @@
         }
     </style>
 </head>
+<script type="text/javascript" th:src="@{/js/jquery/jquery-2.2.4.min.js}" src="../public/js/jquery/jquery-2.2.4.min.js"></script>
 <body>
-<script type="text/javascript" th:src="@{js/jquery/jquery-2.2.4.min.js}" src="../public/js/jquery/jquery-2.2.4.min.js"></script>
-<script type="text/javascript">
-    var url = location.href;
-    var urlstatus = false;
-    $(".nav li a").each(function () {
-        if ((url + '/').indexOf($(this).attr('href')) > -1 && $(this).attr('href') != '/') {
-            $(this).addClass('current');
-            urlstatus = true;
-        } else {
-            $(this).removeClass('current');
-        }
-    });
-    if (!urlstatus) {
-        $(".nav li a").eq(0).addClass('current');
-    }
-
-	  var xhr = new XMLHttpRequest();
-	  xhr.open('get', 'https://v1.hitokoto.cn');
-	  xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4) {
-              var data = JSON.parse(xhr.responseText);
-              var yiyan = document.getElementById('yiyan');
-              yiyan.innerText = data.hitokoto+" -「"+data.from+"」";
-          }
-      };
-	  xhr.send();
-</script>
-
 <!-- side bar  -->
 <div class="sidebar animated fadeInDown">
     <div class="logo-title">
@@ -103,34 +49,23 @@
         </div>
     </div>
 
-<!-- social-list.ftl -->
 <ul class="social-links">
-
-    <li>
-        <a target="_blank" href="#">
-            <i class="fa fa-rss"></i>
-        </a>
-    </li>
         <li>
             <a target="_blank" href="#">
                 <i class="fa fa-qq"></i>
             </a>
         </li>
-
         <li>
-            <a target="_blank" href="https://t.me/${settings.telegram}">
                 <i class="fa fa-telegram"></i>
             </a>
         </li>
-
         <li>
             <a target="_blank" href="mailto:${settings.email}">
                 <i class="fa fa-envelope"></i>
             </a>
         </li>
-
         <li>
-            <a target="_blank" href="https://github.com/${settings.github}">
+            <a target="_blank" href="https://github.com">
                 <i class="fa fa-github"></i>
             </a>
         </li>
@@ -139,31 +74,22 @@
 <!-- social-list over -->
 
     <div class="footer">
-        <a target="_blank" href="#">
-            <span>Designed by </span>
-            <a href="#">Neusoft</a>
-            <div class="by_halo">
-                <a href="https://github.com/catchchen/a-web-app" target="_blank">Github chenkaiqi account</a>
-            </div>
-<!--  side- footer-->
             <div class="footer_text">
                 <div th:replace="fragments/footer :: footer"></div>
             </div>
-        </a>
+
     </div>
 </div>
 
 <div class="main">
 <div class="page-top animated fadeInDown">
     <div class="nav">
-
                 <li>
                     <a href="/user-lgoin" target="">管理文章</a>
                 </li>
                 <li>
                     <a href="/index" target="_blank">首页</a>
                 </li>
-
     </div>
     <div class="information">
         <div class="back_btn">
@@ -190,19 +116,19 @@
                  如果 分页信息 的值 是 多页数据显示上下页 标签
        显示 单个文章内容 不是文章列表
                         展示文章内容 信息
-                     如果可以显示评论文章的评论主键 文章
 -->
     <div class="autopagerize_page_element">
         <div class="content">
-            <div class="archive animated fadeInDown" th:each="post : ${posts}">
+            <div class="archive animated fadeInDown" th:each="post : ${posts.getData()}">
                 <ul class="list-with-title">
-                        <div class="listing-title" th:text="${post.summary}"></div>
+
                         <ul class="listing">
                                 <div class="listing-item">
                                     <div class="listing-post">
                                         <a href="${post.url!}" title="${post.title!}" th:text="${post.title}"></a>
+                                        <div class="listing-title" th:text="${post.summary}"></div>
                                         <div class="post-time">
-                                            <span class="date" th:text="${#dates.format(post.updateTime, 'dd-MMM-yyyy')}">${post.updateTime?string("yyyy-MM-dd")}</span>
+                                            <span class="date" th:text="${#dates.format(post.updateTime, 'yyyy-MMM-dd')}">${post.updateTime?string("yyyy-MM-dd")}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -214,14 +140,16 @@
 
                 <div class="pagination">
                     <ul class="clearfix">
+                        <div th:if="${posts.isHasPreviousPage()}">
                             <li class="pre pagbuttons">
                                 <a class="btn" role="navigation" href="${pagination.prevPageFullPath!}">上一页</a>
                             </li>
-
+                        </div>
+                        <div th:if="${posts.isHasNextPage()}">
                             <li class="next pagbuttons">
                                 <a class="btn" role="navigation" href="${pagination.nextPageFullPath!}">下一页</a>
                             </li>
-
+                        </div>
                     </ul>
                 </div>
 <!--            <div th:if="posts.isHasPreviousPage()"></div>-->
@@ -229,24 +157,25 @@
         </div>
 
     </div>
+
+
 </div>
 
-<script type="text/javascript" src="source/js/jquert.min.js"></script>
-<script type="text/javascript">
-    var url = location.href;
-    var urlstatus = false;
-    $(".nav li a").each(function () {
-        if ((url + '/').indexOf($(this).attr('href')) > -1 && $(this).attr('href') != '/') {
-            $(this).addClass('current');
-            urlstatus = true;
-        } else {
-            $(this).removeClass('current');
-        }
-    });
-    if (!urlstatus) {
-        $(".nav li a").eq(0).addClass('current');
-    }
 
+<script type="text/javascript">
+    // var url = location.href;
+    // var urlstatus = false;
+    // $(".nav li a").each(function () {
+    //     if ((url + '/').indexOf($(this).attr('href')) > -1 && $(this).attr('href') != '/') {
+    //         $(this).addClass('current');
+    //         urlstatus = true;
+    //     } else {
+    //         $(this).removeClass('current');
+    //     }
+    // });
+    // if (!urlstatus) {
+    //     $(".nav li a").eq(0).addClass('current');
+    // }
 	  var xhr = new XMLHttpRequest();
 	  xhr.open('get', 'https://v1.hitokoto.cn');
 	  xhr.onreadystatechange = function () {
@@ -258,10 +187,6 @@
       };
 	  xhr.send();
 </script>
-
-
-
-
 
 </body>
 </html>

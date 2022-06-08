@@ -44,10 +44,6 @@ class ArticleServiceImplTest {
         assertEquals(10, page.getEndRow());
         assertEquals(183, page.getTotal());
         assertEquals(19, page.getPages());
-//        assertEquals(1, page.getFirstPage());
-//        assertEquals(8, page.getLastPage());
-//        assertEquals(true, page.isFirstPage());
-//        assertEquals(false, page.isLastPage());
         assertEquals(false, page.isHasPreviousPage());
         assertEquals(true, page.isHasNextPage());
     }

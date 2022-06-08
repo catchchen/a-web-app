@@ -43,21 +43,15 @@ public class UserRestfulController {
      * @return
      */
     @PutMapping("/users")
-    public Response editUser(@RequestBody User user){
+    public Response editUserInfo(@RequestBody User user){
 //        userService.editUser(user);
         return Response.ok("修改成功");
     }
 
-//    @PutMapping("/user/status")
-//    public Response changeUserStatus(@RequestBody User user){
-//        userService.changeStatus(user);
-//        return Response.ok("修改用户状态成功");
-//
-//    }
-
     @PutMapping("/user/password")
     public Response changeUserPassword(@RequestBody User user){
-//        userService.resetUserPassword(user);
+//        userService.changeUserPassword(user);
+//        Response.ok("密码修改成功")
         return Response.ok("密码修改成功");
     }
 }
