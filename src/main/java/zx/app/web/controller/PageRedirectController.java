@@ -20,7 +20,7 @@ public class PageRedirectController {
     private static final String ADMIN_REDIRECT_URI = "admin/dist/index.html";
     @GetMapping("/user-login")
     public void login(HttpServletResponse response) throws IOException {
-        response.sendRedirect("http://localhost:8090/admin");
+        response.sendRedirect("user/dist/index.html");
 
 //        response.sendRedirect(INDEX_REDIRECT_URI);
     }

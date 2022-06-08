@@ -20,14 +20,17 @@
           <span><router-link to="/list">文章管理</router-link></span>
         </a-menu-item>
         <a-menu-item key="4">
-          <span><a href="http://localhost:9090/">回到主页</a></span>
+          <span><a href="http://localhost:9090/">主页</a></span>
         </a-menu-item>
       </a-menu>
+
+        <a-menu key="5">
+          <a-avatar class="avatar" size="small" :src="user.avatar || '//cn.gravatar.com/avatar/?s=256&d=mm'" />
+        </a-menu>
       </a-layout-header>
     <a-layout>
       <a-layout-content
-          :style="{ margin: '46px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
-      >
+          :style="{ margin: '46px 16px', padding: '24px', background: '#fff', minHeight: '280px' }">
         <router-view />
       </a-layout-content>
       <Footer />
@@ -45,10 +48,7 @@ export default {
     }
   },
   components: {
-    // Header,
     Footer,
-    // SideMenu,
-    // RouteView
   },
 }
 </script>

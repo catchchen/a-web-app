@@ -28,17 +28,16 @@
 <script>
 import { mapGetters } from 'vuex'
 import axios from 'axios'
-
 import vueFilePond from 'vue-filepond'
 import 'filepond/dist/filepond.min.css'
 
 // Plugins
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css'
-import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type'
+// import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type'
 
 // Create component and regist plugins
-const FilePond = vueFilePond(FilePondPluginImagePreview, FilePondPluginFileValidateType)
+const FilePond = vueFilePond(FilePondPluginImagePreview) // , FilePondPluginFileValidateType
 export default {
   name: 'FilePondUpload',
   components: {
@@ -78,7 +77,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['options']),
+    // ...mapGetters(['options']),
     maxParallelUploads() {
       if (this.options) {
         return this.options.attachment_upload_max_parallel_uploads
@@ -121,18 +120,17 @@ export default {
           )
             .then(response => {
               load(response)
-              this.$log.debug('Uploaded successfully', response)
+
               this.$emit('success', response, file)
             })
             .catch(failure => {
-              this.$log.debug('Failed to upload file', failure)
+
               this.$emit('failure', failure, file)
               error()
             })
           return {
             abort: () => {
               abort()
-              this.$log.debug('Upload operation aborted by the user')
               source.cancel('Upload operation canceled by the user.')
             }
           }
@@ -143,7 +141,7 @@ export default {
   },
   methods: {
     handleFilePondInit() {
-      this.$log.debug('FilePond has initialized')
+
     },
     handleClearFileList() {
       this.$refs.pond.removeFiles()

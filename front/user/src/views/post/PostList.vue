@@ -14,6 +14,7 @@
         </template>
       </span>
     </div>
+
     <a-table
         :row-selection="{ selectedRowKeys: selectedRowKeys }"
         :columns="columns"
@@ -26,7 +27,7 @@
 
 const columns = [
   {
-    title: '文章名',
+    title: '文章标题',
     dataIndex: 'name',
   },
   {
@@ -34,12 +35,13 @@ const columns = [
     dataIndex: 'status',
   },
   {
-    title: 'Address',
+    title: '操作',
     dataIndex: 'address',
   },
 ];
 
 const data = [];
+// 假数据
 for (let i = 0; i < 46; i++) {
   data.push({
     key: i,

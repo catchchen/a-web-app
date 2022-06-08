@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import  Button from '@/components/Button'
+import  Button from '@/components/Reactive'
 import MarkdownEditor from '@/components/Editor/MarkdownEditor'
 export default {
   name: 'PostEditor',

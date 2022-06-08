@@ -30,20 +30,20 @@ export const asyncRouter = [
     name: 'BasicLayout',
     component: BasicLayout,
     meta: { title: '首页' },
-    redirect: '/list',
+    redirect: '/main',
     children: [
-        // PostList
-      {
-        path: '/list',
-        name: 'postList',
-        component: () => import('@/views/post/PostList')
-      },
       // main page
       {
         path: '/main',
         name: 'Dashboard',
-        component: () => import('@/views/dashboard/Dashboard'),
+        component: () => import('@/views/main/Dashboard'),
         meta: { title: '主页面'}
+      },
+      // PostList
+      {
+        path: '/list',
+        name: 'postList',
+        component: () => import('@/views/post/PostList')
       },
       {
         path: '/write',
@@ -60,12 +60,17 @@ export const asyncRouter = [
         children: [
           {
             path: '/posts/write',
-            name: 'PostWrite',
+            name: 'PostEditor',
+            component: () => import('@/views/post/PostList'),
+          },
+          {
+            path: '/posts/write',
+            name: 'PostEditor',
             component: () => import('@/views/post/PostEdit'),
           },
           {
             path: '/posts/edit',
-            name: 'PostEdit',
+            name: 'PostEditor',
             component: () => import('@/views/post/PostEdit'),
           },
         ]

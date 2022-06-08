@@ -12,8 +12,8 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
-import { toolbars } from '@/core/toolbars'
+// import axios from 'axios'
+import { toolbars } from '@/toolSettings/toolbars'
 import { haloEditor } from 'halo-editor'
 import 'halo-editor/dist/css/index.css'
 

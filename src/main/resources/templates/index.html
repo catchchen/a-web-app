@@ -27,8 +27,8 @@
 <!--                    <div class="single-blog-content" th:each="post : ${posts}">-->
 <!--                        <div class="line"></div>-->
 <!--                        <a href="#" class="post-tag">Lifestyle</a>-->
-<!--                        <h4><a href="#" class="post-headline"><p th:text="${post.getTitle()}"></p></a></h4>-->
-<!--                        <p th:text="${post.getSummary()}"></p>-->
+<!--                        <h4><a href="#" class="post-headline"><p th:text="${post.title}"></p></a></h4>-->
+<!--                        <p th:text="${post.summary}"></p>-->
 <!--                        <a href="#" class="btn original-btn">Read More</a>-->
 <!--                    </div>-->
                 </div>
@@ -73,11 +73,13 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <!-- Article Content -->
-                            <div class="single-blog-content" th:each="post : ${posts}">
+<!--                            th:each="post : ${posts}"-->
+                            <div class="single-blog-content">
                                 <div class="line"></div>
                                 <a href="#" class="post-tag">标题</a>
                                 <h4><a href="#" class="post-headline">投入时间用在学习上自我提升</a></h4>
-                                <p th:text="">something</p>
+<!-- th:text=""-->
+                                <p>something</p>
                                 <div class="post-meta">
                                     <p>By <a href="#">some one ....</a></p>
                                     <p>3 comments</p>  <p>99 likes</p>
@@ -89,10 +91,11 @@
 
                 <!-- Single Blog Area  -->
                 <div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1000ms">
+<!--                     th:="" -->
                     <div class="row align-items-center">
                         <div class="col-12 col-md-6">
                             <div class="single-blog-thumbnail">
-                                <img th:src="@{img/blog-img/future-to-live-better.png}" src="img/blog-img/4.jpg" alt="">
+                                <img th:src="@{img/blog-img/future-to-live-better.png}" alt="">
                                 <div class="post-date">
                                     <a href="#">2 <span>top</span></a>
                                 </div>
@@ -103,6 +106,7 @@
                             <div class="single-blog-content">
                                 <div class="line"></div>
                                 <a href="#" class="post-tag">Lifestyle</a>
+<!--                                @{/article/1}-->
                                 <h4><a href="#" class="post-headline">欢迎来到这个知识分享的网站 </a></h4>
                                 <p>文章介绍了如何使用网站可以进行快速学习</p>
                                 <div class="post-meta">
@@ -121,7 +125,7 @@
                             <div class="single-blog-thumbnail">
                                 <img src="img/blog-img/7.jpg" alt="">
                                 <div class="post-date">
-                                    <a href="#">10 <span>Hot</span></a>
+                                    <a href="#">3 <span>Hot</span></a>
                                 </div>
                             </div>
                         </div>

@@ -16,5 +16,4 @@ public class ArticleDTO {
     private String author;
     private String originContent;
     private String url;
-
 }

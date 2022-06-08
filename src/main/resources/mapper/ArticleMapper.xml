@@ -44,6 +44,7 @@
     <select id="findHotList" resultType="zx.app.web.model.vo.ArticleVo">
         select
               art.id,
+              art.userId,
               art.title,
               u.nickname,
               art.summary,
@@ -56,6 +57,7 @@
 <select id="findLatestArticleVo" resultType="zx.app.web.model.vo.ArticleVo">
     select
               art.id,
+              art.userId,
               art.title,
               u.nickname,
               art.summary,
@@ -67,6 +69,7 @@
     <select id="findArticleVoById" resultType="zx.app.web.model.vo.ArticleVo" parameterType="int">
         select
             art.id,
+            art.userId,
             art.title,
             u.nickname,
             art.summary,

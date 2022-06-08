@@ -56,7 +56,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List getPostList() {
-        return null;
+        return articleMapper.findHotList();
     }
 
     @Override

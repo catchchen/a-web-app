@@ -11,4 +11,6 @@ public interface SortService {
 
 
     Response add(SortFormParam sortParam);
+
+    Response remove(Integer id);
 }

@@ -70,7 +70,7 @@ public class MarkdownUtil {
     private static final Pattern FRONT_MATTER = Pattern.compile("^---[\\s\\S]*?---");
 
     /**
-     * Render Markdown content
+     * Render Markdown contenta
      * markdown渲染成为 html
      * @param markdown content
      * @return String
@@ -104,6 +104,7 @@ public class MarkdownUtil {
      * @param markdown markdown
      * @return markdown
      */
+
     public static String removeFrontMatter(String markdown) {
         markdown = markdown.trim();
         Matcher matcher = FRONT_MATTER.matcher(markdown);
@@ -112,6 +113,5 @@ public class MarkdownUtil {
         }
         return markdown;
     }
-
 
 }

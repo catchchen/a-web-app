@@ -11,5 +11,4 @@ public class ArticleParam {
     private String title;
     private ArticleStatus status =ArticleStatus.PUBLISHED;
     private String originContent;
-
 }

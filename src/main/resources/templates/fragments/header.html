@@ -31,9 +31,8 @@
 
               <a href="#" data-toggle="tooltip" data-placement="bottom" title="Dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
               <a href="#" data-toggle="tooltip" data-placement="bottom" title="Behance"><i class="fa fa-behance" aria-hidden="true"></i></a>
-              <!--                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>-->
-              <a th:href="@{about-me.html}" href="../static/about-me.html">about me</a>
-              <a href="../static/register.html" title="register" class="">注册<i class="fa fa-linkedin" aria-hidden="true"></i>to</a>
+              <a th:href="@{/about-me.html}" href="../static/about-me.html">about me</a>
+              <strong><a href="../static/register.html" title="register" class="">注册<i class="fa fa-linkedin" aria-hidden="true"></i>to</a></strong>
             </div>
           </div>
         </div>
@@ -44,17 +43,17 @@
     <div class="logo-area text-center">
       <div class="container h-100">
         <div class="row h-100 align-items-center">
-          <h3><strong style="text-align: center;line-height: normal">用户排名:</strong></h3>
+          <h4>用户排名:</h4>
           <div class="col-12">
             <ol class="list-inline-item">
-              <li th:each="user,stat: ${users}">
+              <li th:each="user, stat: ${users}">
 <!--                th:text="${user.username}" 变量表达式 下面使用行内写法-->
                 <div>No.
-                  <span th:text="${stat.count}"></span><span> :</span>[[${user.username}]]<span>- 发布数量:[[${user.grade}]]</span>
+                  <span th:text="${stat.count}"></span><span> :</span>[[${user.username}]]<span>- 发布数量:[[${user.username}]]</span>
                 </div>
               </li>
             </ol>
-            <a th:href="@{index.html}" href="./index.html" class="original-logo"><img src="img/core-img/" alt=""></a>
+            <a th:href="@{/index.html}" href="./index.html" class="original-logo"><img src="img/core-img/" alt=""></a>
           </div>
         </div>
       </div>
@@ -64,7 +63,7 @@
     <div class="original-nav-area" id="stickyNav">
       <div class="classy-nav-container breakpoint-off">
         <div class="container">
-          <!-- Classy Menu -->
+          <!--  Menu -->
           <nav class="classy-navbar justify-content-between">
             <!-- Navbar Toggler -->
             <div class="classy-navbar-toggler">
@@ -89,8 +88,7 @@
                     </ul>
                   </li>
                   <li><a href="about-us.html">关于我</a></li>
-
-                  <li><a href="contact.html">注册</a></li>
+                  <li><a th:href="@{register.html}" href="../static/register.html">注册</a></li>
                 </ul>
               </div>
               <!-- Nav End -->

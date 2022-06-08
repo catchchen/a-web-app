@@ -5,9 +5,7 @@
     :icon="computedIcon"
     :loading="loading"
     :size="size"
-    :block="block"
-    >{{ computedText }}</a-button
-  >
+    :block="block">{{ computedText }}</a-button>
 </template>
 <script>
 export default {

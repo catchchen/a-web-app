@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import zx.app.web.mapper.ArticleMapper;
 import zx.app.web.model.entity.Article;
+import zx.app.web.model.vo.ArticleVo;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,9 +19,7 @@ class ArticleMapperTest {
 
     @Test
     void getArticleById(){
-        Article byId = articleMapper.findById(1);
-        System.out.println(byId.getTitle());
-        System.out.println(byId.getFormatContent());
-        System.out.println(byId.getOriginContent());
+        List<ArticleVo> findLatestArticleVo = articleMapper.findLatestArticleVo();
+        System.out.println(findLatestArticleVo.toString());
     }
 }

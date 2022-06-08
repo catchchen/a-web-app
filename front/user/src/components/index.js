@@ -1,23 +1,37 @@
 import Vue from 'vue'
 
-import Ellipsis from '@/components/Ellipsis'
-import FooterToolbar from '@/components/FooterToolbar'
-import FilePondUpload from '@/components/Upload/FilePondUpload'
-import AttachmentSelectDrawer from './Attachment/AttachmentSelectDrawer'
-import ReactiveButton from './Button/ReactiveButton'
+import FilePondUpload from './FilePondUpload'
+// import AttachmentSelectDrawer from './Attachment/AttachmentSelectDrawer'
+import ReactiveButton from './ReactiveButton'
 
 const _components = {
-  Ellipsis,
-  FooterToolbar,
+  // 文件上传 主键
   FilePondUpload,
-  AttachmentSelectDrawer,
   ReactiveButton
 }
 
 const components = {}
 
 Object.keys(_components).forEach(key => {
+  // 注册组件
   components[key] = Vue.component(key, _components[key])
 })
 
 export default components
+
+/**
+ * 已发布
+ */
+// PUBLISHED(1),
+
+/**
+ * editing 需要继续编写的
+ */
+// EDITING(2),
+/**
+ * 回收站
+ */
+// RECYCLE(3),
+
+
+// DELETE(4);

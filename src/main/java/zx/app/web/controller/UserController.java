@@ -62,36 +62,18 @@ public class UserController {
 
 
     @GetMapping({"/index", "/"})
-    public String index(Model model , HttpSession session){
-//        ModelAndView mav = new ModelAndView();
-//        model.addAttribute("curentUser" , userService.getUserById();
+    public String index(Model model , HttpSession session){ // ,
         log.info("index ---> page website");
+//        session.getAttribute("userId") != null
+        if(false){
+            log.info("get user id:{}", session.getAttribute("userId").toString());
+            Integer userId = Integer.parseInt(session.getAttribute("userId").toString());
+            log.info(userId.toString());
+            model.addAttribute("current", userService.getUserById(userId));
+        }
         model.addAttribute("users", userService.getTopUsers());
-        ArrayList<ArticleVo> articles =articleService.getHotsPost();
         model.addAttribute("tops", articleService.getHotsPost());
-        model.addAttribute("latest", articleService.getLatestPosts());
-//        "index"
-/*        mav.addObject("user", new User());
-
-        Article article = new Article();
-
-
-        articles.add(article);
-        // 默认添加 的文章 注册的时候进行的
-        mav.addObject("posts",articles);*/
-        //get user list     userService.list(); //
-//        List<User> list = userService.getTopUsers();
-
-//        List list = new ArrayList();
-//        list.add("string");
-//        list.add("string2");
-        // 通过 Grade 分数升序排序 显示用户排名
-//        articleService.listTopView();
-//        map.addAttribute("hots", );
-//        mav.addObject("users",list.stream()
-//                .sorted(Comparator.comparingLong(User::getGrade)
-//                        .reversed())
-//                .collect(Collectors.toList()));
+        model.addAttribute("posts", articleService.getLatestPosts());
         return "index";
     }
 
@@ -131,6 +113,7 @@ public class UserController {
     @GetMapping("/article/{articleId}")
     public String getArticleInfo(@PathVariable("articleId") Integer id, Model m){
         ArticleVo articleVoById = articleService.getArticleVoById(id);
+
         m.addAttribute("post", articleVoById);
         return "/post-page";
     }

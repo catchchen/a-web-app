@@ -52,8 +52,6 @@
   </div>
 </template>
 <script>
-// import adminApi from '@/api/admin'
-// import { mapActions } from 'vuex'
 export default {
   name: 'LoginForm',
 }

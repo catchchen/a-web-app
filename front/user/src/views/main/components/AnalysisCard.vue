@@ -1,6 +1,9 @@
 <template>
 <div>
-  Card
+  <a-card>
+    <h2>{{title}}</h2>
+    card {{startNumber}}
+  </a-card>
 </div>
 </template>
 

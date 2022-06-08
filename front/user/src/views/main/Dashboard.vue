@@ -1,24 +1,24 @@
 <template>
 <div>
-  <!-- <page-view>
-    </page-view> -->
     <h2>JournalPublishCard</h2>
   <journal-publish-card></journal-publish-card>
   <h2>RecentComment</h2>
-  <recent-comment-tab></recent-comment-tab>
+<!--  <recent-comment-tab></recent-comment-tab>-->
   <h2>DashBoard</h2>
     <div class="dashboard-text">name:{{ name }}</div>
     <div class="dashboard-text">roles:<span v-for="role in roles" :key="role">{{ role }}</span></div>
 </div>
 </template>
 
+
+
 <script>
+
 // import { PageView } from '@/layouts'
+//仪表盘组件 显示 发布数量 草稿数量 回收数量 和 总数
 // import AnalysisCard from './components/AnalysisCard'
 import JournalPublishCard from './components/JournalPublishCard'
-import RecentCommentTab from './components/RecentCommentTab'
 // import LogListDrawer from './components/LogListDrawer'
-
 // import postApi from '@/api/post'
 // import logApi from '@/api/log'
 // import statisticsApi from '@/api/statistics'

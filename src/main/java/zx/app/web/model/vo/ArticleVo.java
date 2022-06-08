@@ -9,7 +9,8 @@ import java.util.Date;
  */
 @Data
 public class ArticleVo {
-    private String id;
+    private Integer id;
+    private Integer userId;
     private String nickname;
     private String title;
     private String sign;
