@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import zx.app.web.mapper.ArticleMapper;
+import zx.app.web.model.vo.ArticlePageVo;
 import zx.app.web.model.vo.ArticleVo;
 import zx.app.web.service.inter.ArticleService;
+import zx.app.web.utils.MarkdownUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,5 +49,14 @@ class ArticleServiceImplTest {
 //        assertEquals(19, page.getPages());
 //        assertEquals(false, page.isHasPreviousPage());
 //        assertEquals(false,page.isHasNextPage());
+    }
+
+    @Test
+    void getArticleVoPagedById(){
+        ArticlePageVo articleVoById = articleService.getArticleVoById(0);
+        System.out.println(articleVoById.getTitle());
+        System.out.println(articleVoById.getFormatContent());
+        String s = MarkdownUtil.renderHtml("## wtamadeya \n\n > 这是引用\n\n - 文件 \n - li \n - li2");
+        System.out.println(s);
     }
 }

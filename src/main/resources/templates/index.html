@@ -24,6 +24,7 @@
             <div class="col-12 col-lg-4">
                 <div class="single-blog-area clearfix mb-100">
                     <!-- Blog Content -->
+                    <div style="color: red">zheshi</div>
 <!--                    <div class="single-blog-content" th:each="post : ${posts}">-->
 <!--                        <div class="line"></div>-->
 <!--                        <a href="#" class="post-tag">Lifestyle</a>-->
@@ -37,9 +38,8 @@
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="single-catagory-area clearfix mb-100">
                     <img src="img/blog-img/1.jpg" alt="">
-                    <!-- Catagory Title -->
-                    <div class="catagory-title">
-                        <a href="#">网站使用入门教程</a>
+                    <div class="title">
+                        <a th:href="@{/article/0/}" href="#">入门教程</a>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                     <img th:src="@{img/blog-img/2.jpg}" alt="">
                     <!-- sort title -->
                     <div class="catagory-title">
-                        <a href="#">how to use this posts website</a>
+                        <a th:href="@{/article/0/}" href="#">how to use this posts website</a>
                     </div>
                 </div>
             </div>

@@ -13,6 +13,7 @@ import zx.app.web.model.RegisterFormParams;
 import zx.app.web.model.ResultArticlePage;
 import zx.app.web.model.entity.Article;
 import zx.app.web.model.entity.User;
+import zx.app.web.model.vo.ArticlePageVo;
 import zx.app.web.model.vo.ArticleVo;
 import zx.app.web.model.vo.UserVo;
 import zx.app.web.service.inter.ArticleService;
@@ -112,10 +113,9 @@ public class UserController {
 
     @GetMapping("/article/{articleId}")
     public String getArticleInfo(@PathVariable("articleId") Integer id, Model m){
-        ArticleVo articleVoById = articleService.getArticleVoById(id);
-
+        ArticlePageVo articleVoById = articleService.getArticleVoById(id);
         m.addAttribute("post", articleVoById);
-        return "/post-page";
+        return "/article-single-page";
     }
 
     @GetMapping("/users/{userId}/home")

@@ -4,6 +4,7 @@ package zx.app.web.service.inter;
 import zx.app.web.model.common.ArticleStatus;
 import zx.app.web.model.common.Response;
 import zx.app.web.model.dto.ArticleDTO;
+import zx.app.web.model.vo.ArticlePageVo;
 import zx.app.web.model.vo.ArticleVo;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public interface ArticleService {
 
     List<ArticleVo> getArticleVoByUserId(Integer id);
 
-    ArticleVo getArticleVoById(Integer id);
+    ArticlePageVo getArticleVoById(Integer id);
 
     List getLatestPosts();
 

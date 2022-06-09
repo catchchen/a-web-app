@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import zx.app.web.model.common.ArticleStatus;
 import zx.app.web.model.dto.ArticleDTO;
 import zx.app.web.model.entity.Article;
+import zx.app.web.model.vo.ArticlePageVo;
 import zx.app.web.model.vo.ArticleVo;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public interface ArticleMapper {
 
     List<ArticleVo> findLatestArticleVo();
 
-    ArticleVo findArticleVoById(Integer id);
+    ArticlePageVo findArticleVoById(Integer id);
 
 
     List<ArticleVo> selectArticleVoListByUserId(Integer id);

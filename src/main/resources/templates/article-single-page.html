@@ -14,7 +14,6 @@
     <link th:href="@{/source/css/style.min.css}" href="../public/source/css/style.min.css" type="text/css" rel="stylesheet" />
 
     <script type="text/javascript" th:src="@{/source/js/prism.min.js}" src="../public/source/js/prism.min.js"></script>
-    <!--    <link rel="alternate" type="application/rss+xml" title="atom 1.0" href="">-->
     <style>
         .post .post-title h3 {
             text-transform: none;
@@ -36,48 +35,20 @@
 <body>
 <!-- side bar  -->
 <div class="sidebar animated fadeInDown">
+    <div></div>
     <div class="logo-title">
         <div class="title">
             <img src="//cn.gravatar.com/avatar/01dd5503de8765d3dc92197bdeeb8dd5?s=256&d=mm" style="width:127px" />
             <h3 title="">
-                <p th:text="${user.nickname}">nickname</p>
+                <p>计算机科普网站</p>
             </h3>
             <div class="description">
                 <p id="yiyan">获取中...</p>
-                <p th:text="${user.sign}">个性签名在这里...</p>
+                <p>人人都是知识的学习者和创造者，让有个性化的内容传播到需要这类知识的人们</p>
             </div>
         </div>
     </div>
-
-    <ul class="social-links">
-        <li>
-            <a target="_blank" href="#">
-                <i class="fa fa-qq"></i>
-            </a>
-        </li>
-        <li>
-            <i class="fa fa-telegram"></i>
-            </a>
-        </li>
-        <li>
-            <a target="_blank" href="mailto:${settings.email}">
-                <i class="fa fa-envelope"></i>
-            </a>
-        </li>
-        <li>
-            <a target="_blank" href="https://github.com">
-                <i class="fa fa-github"></i>
-            </a>
-        </li>
-    </ul>
-
     <!-- social-list over -->
-
-    <div class="footer">
-        <div class="footer_text">
-            <div th:replace="fragments/footer :: footer"></div>
-        </div>
-    </div>
 </div>
 
 <div class="main">
@@ -97,43 +68,51 @@
                 </li>
             </div>
             <div class="avatar">
-                <img src="//cn.gravatar.com/avatar/01dd5503de8765d3dc92197bdeeb8dd5?s=256&d=mm" />
-            </div>
-            <div class="searchbox">
-                <form method="get" action="/search" role="search">
-                    <input class="searchtxt" type="search" name="keyword" placeholder="Search" required>
-                    <a class="searchbtn" href="#"><i class="fa fa-search"></i>search</a>
-                </form>
+                <img th:src="@{/fonts/avatar.png}" src="//cn.gravatar.com/avatar/01dd5503de8765d3dc92197bdeeb8dd5?s=256&d=mm" />
             </div>
         </div>
     </div>
-
     <!-- page-top over -->
+<!-- post 对象
+/article/{articleId}
+title
+formatContent
+updateTime
+-->
     <!-- article content start-->
-
     <div class="autopagerize_page_element">
-        <div class="content">
-            <div class="archive animated fadeInDown" th:object="post">
-                <ul class="list-with-title">
-                    <ul class="listing">
-                        <div class="listing-item">
-                            <div class="listing-post">
-                                <a href="${post.url!}" title="${post.title!}" th:text="${post.title}"></a>
-                                <div class="listing-title" th:text="${post.formatContent}"></div>
-                                <div class="post-time">
-                                    <span class="date" th:text="${#dates.format(post.updateTime, 'yyyy-MMM-dd')}">${post.updateTime?string("yyyy-MM-dd")}</span>
-                                </div>
-                            </div>
+        <div class="content" th:object="${post}">
+<!--    显示 单个文章内容   -->
+            <div class="archive animated fadeInDown">
+                <div class="post-title">
+                    <h3>
+                        <a href="#" th:text="*{title}"></a>
+                    </h3>
+                </div>
+
+                <div class="post-content">
+                    <div class="p_part">
+                        <p th:utext="*{formatContent}"></p>
+                    </div>
+                </div>
+                <div class="post-footer">
+                    <div class="meta">
+                        <div class="info">
+                            <i class="fa fa-sun-o"></i>
+                            <span class="date" th:text="${#dates.format(updateTime, 'yyyy-MMM-dd')}"></span>
+                            <i class="fa fa-comment-o"></i>
+                            <a href="#">Comments</a>
+                            <i class="fa fa-tag"></i>
+                            <a href="#">sort</a>
                         </div>
-                    </ul>
-                </ul>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-
 
 </div>
-
 
 <script type="text/javascript">
     // var url = location.href;
@@ -160,6 +139,5 @@
     };
     xhr.send();
 </script>
-
 </body>
 </html>

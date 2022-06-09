@@ -6,6 +6,7 @@ import zx.app.web.model.common.Response;
 import zx.app.web.model.common.ArticleStatus;
 import zx.app.web.model.dto.ArticleDTO;
 import zx.app.web.model.entity.Article;
+import zx.app.web.model.vo.ArticlePageVo;
 import zx.app.web.model.vo.ArticleVo;
 import zx.app.web.service.inter.ArticleService;
 import zx.app.web.utils.BeanUtil;
@@ -43,8 +44,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public ArticleVo getArticleVoById(Integer id) {
-        ArticleVo vo = articleMapper.findArticleVoById(id);
+    public ArticlePageVo getArticleVoById(Integer id) {
+        ArticlePageVo vo = articleMapper.findArticleVoById(id);
         return vo;
     }
 
