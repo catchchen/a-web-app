@@ -10,6 +10,8 @@ import zx.app.web.model.vo.ArticlePageVo;
 import zx.app.web.model.vo.ArticleVo;
 import zx.app.web.service.inter.ArticleService;
 import zx.app.web.utils.BeanUtil;
+import zx.app.web.utils.DateUtil;
+import zx.app.web.utils.MarkdownUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,15 +30,22 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Response save(ArticleDTO articleDTO, Integer uid) {
         Article newArticle = BeanUtil.transform(articleDTO, Article.class);
-
-        Long a = articleMapper.insertArticle(newArticle, uid);
-
+        String originContent = articleDTO.getOriginContent();
+        newArticle.setFormatContent(
+                MarkdownUtil.renderHtml(originContent));
+        if(originContent.length() < 25){
+            newArticle.setSummary(originContent);
+        } else newArticle.setSummary(originContent.substring(0, 24) + "...");
+        newArticle.setUserId(uid);
+        newArticle.setCreateTime(DateUtil.now());
+        newArticle.setUpdateTime(DateUtil.now());
+        Long a = articleMapper.insertArticle(newArticle);
+        // 插入成功
         if(a < 1){
-            return Response.fail("发布失败");
+            return Response.fail("保存失败");
         }
-        return Response.ok("发布成功");
+        return Response.ok("保存成功");
     }
-
     @Override
     public List<ArticleVo> getArticleVoByUserId(Integer id) {
         List<ArticleVo> articleVos = articleMapper.selectArticleVoListByUserId(id);

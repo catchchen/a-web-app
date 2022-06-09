@@ -89,22 +89,17 @@ public class UserController {
         log.info("--->{} --->{}进入注册", username, email);
         RegisterFormParams params = new RegisterFormParams(username,nickname,password,email,sign);
         final User user = userService.getUserByUsername(username);
+        log.info("--->{} 用户名", user.getUsername());
         if(user != null){
-            ModelMap.addAttribute("msg", "用户名或被占用");
+            ModelMap.addAttribute("msg", "用户名被占用");
+            return "error/error";
         }
         User newUser = BeanUtil.transform(params, User.class);
         userService.setPassword(newUser, params.getPassword());
         int i = userService.createBy(newUser);
-//        Article article = new Article();
-////        article.setThumbnail("/upload/article/img/1.png");
-//        article.setTitle("标题");
-//        article.setSummary("你好！ " +
-//                "这是你第一次使用 **Markdown编辑器** 所展示的欢迎页。" +
-//                "如果你想学习如何使用Markdown编辑器, 可以仔细阅读这篇文章，" +
-//                "了解一下Markdown的基本语法知识。");
         if(i > 0){
-            log.info("userid:是不是{}", i);
-            // 交给pageController 处理请求 返回登录界面
+            log.info("userid:{}", i);
+            // 注册成功 跳转页面
             return "redirect:/user-login";
         }
         return "500";
@@ -123,6 +118,6 @@ public class UserController {
         Object userId1 = session.getAttribute("userId");
         Integer id = Integer.parseInt(userId1.toString());// String.valueOf(userId1)
         map.addAttribute("posts", articleService.getArticleVoByUserId(id));
-        return "/user-home";
+        return "/article-page";
     }
 }

@@ -5,17 +5,22 @@
     <title>大连东软信息学院- 计算机科学- 陈凯麒</title>
 </head>
 <body>
-<header>mememe</header>
-<h2>name</h2>
+<header>
+    <h4 style="display: inline-block">name:</h4>
+    <p id="me"></p>
+</header>
 <main>
-  <content></content>
-  <p></p>
+  <content>
+      <p id="content"></p>
+  </content>
 </main>
+<aside></aside>
+<aside><a href=""></a></aside>
 <footer></footer>
 </body>
 <script src="../public/js/jquery/jquery-2.2.4.min.js"></script>
 <script>
-  $.get("/")
+  // $.get("http://127.0.0.1:9090/hello")
 </script>
 
 <script>
@@ -24,12 +29,19 @@
     xhr.open('get', 'http://127.0.0.1:9090/hello');
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
-            console.log(xhr.responseType)
-            console.log(xhr.response)
-            console.log(xhr.responseText)
-            var data = JSON.parse(xhr.responseText);
-            var yiyan = document.getElementsByName('content')[0];
-            yiyan.innerText = data;
+            // console.log(xhr.response)
+            // console.log(xhr.responseText)
+            const data = JSON.parse(xhr.responseText);
+            let name = document.getElementById("me");
+            let footer = document.getElementsByTagName("footer")[0];
+            let content = document.getElementById("content");
+            let aside = document.getElementsByTagName("aside")[0];
+            content.innerHTML = data.data.msg;
+            name.innerText = data.name;
+            footer.innerText = data.message;
+            let main = document.getElementsByTagName('p')[0];
+            main.innerHTML = data.data.msg;
+            aside.innerText = `code:${data.code}`;
         }
     };
     xhr.send();

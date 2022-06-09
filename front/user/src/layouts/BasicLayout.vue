@@ -22,11 +22,13 @@
         <a-menu-item key="4">
           <span><a href="http://localhost:9090/">主页</a></span>
         </a-menu-item>
+        <a-menu-item key="5" class="app-sider">
+          <!--          user.avatar ||-->
+          <a-avatar class="avatar" size="small" :src="'//cn.gravatar.com/avatar/?s=256&d=mm'" />
+        </a-menu-item>
       </a-menu>
 
-        <a-menu key="5">
-          <a-avatar class="avatar" size="small" :src="user.avatar || '//cn.gravatar.com/avatar/?s=256&d=mm'" />
-        </a-menu>
+
       </a-layout-header>
     <a-layout>
       <a-layout-content
@@ -65,10 +67,9 @@ export default {
 }
 
 .app-wapper {
-  //.app-sider {
-  //  left: 0;
-
-  //}
+  .app-sider {
+    right: 0;
+  }
   //.app-header{
   //  padding: 0;
   //  background: #fff;

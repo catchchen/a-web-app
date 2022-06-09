@@ -1,6 +1,6 @@
 package zx.app.web.model.common;
 
-public enum ArticleStatus implements ValueEnum<Integer>{
+public enum ArticleStatus implements ValueEnum<Integer> {
     /**
      * 已发布
      */
@@ -15,17 +15,12 @@ public enum ArticleStatus implements ValueEnum<Integer>{
      */
     RECYCLE(3),
 
-
     DELETE(4);
     private final Integer value;
 
     ArticleStatus(Integer value) {
         this.value = value;
     }
-
-    @Override
-    public Integer getValue() {
-        return value;
-    }
+    public Integer getValue() { return this.value; }
 }
 

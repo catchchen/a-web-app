@@ -1,8 +1,7 @@
 package zx.app.web.model.dto;
 
 import lombok.Data;
-
-import java.util.Date;
+import zx.app.web.model.common.ArticleStatus;
 
 /**
  * @author chenk
@@ -10,10 +9,6 @@ import java.util.Date;
 @Data
 public class ArticleDTO {
     private String title;
-    private Integer userId;
-    private Date createTime;
-    private Date updateTime;
-    private String author;
+    private Integer status; // = ArticleStatus.PUBLISHED
     private String originContent;
-    private String url;
 }

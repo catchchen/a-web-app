@@ -73,16 +73,19 @@
         update_time updateTime
     from article where id = #{param1}
 </select>
-<insert id="insertArticle"  parameterType="zx.app.web.model.dto.ArticleDTO" useGeneratedKeys="true" keyProperty="id">
+<insert id="insertArticle"  parameterType="zx.app.web.model.entity.Article" useGeneratedKeys="true" keyProperty="id">
     insert into article(userId,
                         create_time,
                         update_time,
                         format_content,
                         original_content,
+                        status,
                         summary,
                         title,
-                        url)
-    values (#{userId},#{createTime}, #{updateTime},#{formatContent},#{originContent},#{summary},#{title})
+                        visits)
+    values (#{userId},NOW(),
+            NOW(),#{formatContent}, #{originContent},
+            #{status}, #{summary}, #{title}, 0)
 </insert>
 <select id="selectArticleVoListByUserId" resultType="zx.app.web.model.vo.ArticleVo">
     select

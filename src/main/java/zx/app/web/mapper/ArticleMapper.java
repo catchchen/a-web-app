@@ -22,7 +22,7 @@ public interface ArticleMapper {
 
     Article findById(@Param("id") Integer id);
 
-    Long insertArticle(Article article, Integer userId);
+    Long insertArticle(Article article);
 
     int updateStatus(Integer id, ArticleStatus status);
 

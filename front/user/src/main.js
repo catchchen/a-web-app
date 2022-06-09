@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 // import store from './store/'
-// 引入axios发送网络请求
+// 引入axios发送 http网络请求
 import '@/api/user'
 // 按需引入 ant-design-vue组件
 import './ant-design-vue'

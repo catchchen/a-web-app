@@ -14,10 +14,8 @@ class BeanUtilTest {
     void testBeanUtilTransformFrom(){
         ArticleDTO a = new ArticleDTO();
         a.setTitle("title");
-        a.setAuthor("chenk");
         a.setOriginContent("### niu");
         Article art = BeanUtil.transform(a, Article.class);
-        System.out.println(art.getAuthor());
         System.out.println(art.getTitle());
         System.out.println(art.getOriginContent());
     }
@@ -28,10 +26,10 @@ class BeanUtilTest {
         source.setTitle("title");
         source.setOriginContent("#### niu的");
         ArticleDTO target = new ArticleDTO();
-
         BeanUtil.updateProperties(source, target);
         System.out.println(target.getTitle());
         System.out.println(target.getOriginContent());
     }
+
 
 }

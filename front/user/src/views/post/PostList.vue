@@ -1,25 +1,26 @@
 <template>
   <div>
-    <h2>文章列表</h2>
-    <div style="margin-bottom: 16px">
-<!-- 使用 expire 控制 用户写文章的状态-->
-      <a-button type="primary" :disabled="!true" :loading="loading" @click="editorArticle">
-        <router-link to="/write">
-          写文章
-        </router-link>
-      </a-button>
-      <span style="margin-left: 8px">
-        <template v-if="hasSelected">
-          {{ `Selected ${selectedRowKeys.length} items` }}
-        </template>
-      </span>
-    </div>
+    <a-card :bordered="false" :bodyStyle="{ padding: '16px' }">
+      <div style="margin-bottom: 16px">
+  <!-- 使用 expire 控制 用户写文章的状态-->
+        <a-button type="primary" :disabled="true" :loading="loading" @click="editorArticle">
+          <router-link to="/write">
+            写文章
+          </router-link>
+        </a-button>
+        <span style="margin-left: 8px">
+<!--          <template v-if="hasSelected">-->
+<!--            {{ `Selected ${selectedRowKeys.length} items` }}-->
+<!--          </template>-->
+        </span>
+      </div>
 
-    <a-table
-        :row-selection="{ selectedRowKeys: selectedRowKeys }"
-        :columns="columns"
-        :data-source="data"
-    />
+      <a-table
+          :row-selection="{ selectedRowKeys: selectedRowKeys }"
+          :columns="columns"
+          :data-source="data"
+      />
+    </a-card>
   </div>
 </template>
 

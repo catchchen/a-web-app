@@ -42,7 +42,7 @@ public class UserRestfulController {
      * @param user
      * @return
      */
-    @PutMapping("/users")
+    @PutMapping("users")
     public Response editUserInfo(@RequestBody User user){
 //        userService.editUser(user);
         return Response.ok("修改成功");

@@ -7,9 +7,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import zx.app.web.mapper.ArticleMapper;
+import zx.app.web.model.common.ArticleStatus;
+import zx.app.web.model.common.Response;
+import zx.app.web.model.dto.ArticleDTO;
+import zx.app.web.model.entity.Article;
 import zx.app.web.model.vo.ArticlePageVo;
 import zx.app.web.model.vo.ArticleVo;
 import zx.app.web.service.inter.ArticleService;
+import zx.app.web.utils.BeanUtil;
 import zx.app.web.utils.MarkdownUtil;
 
 import java.util.ArrayList;
@@ -23,6 +28,20 @@ class ArticleServiceImplTest {
     ArticleService articleService;
     @Autowired
     ArticleMapper articleMapper;
+
+    @Test
+    void testSave(){
+        ArticleDTO articleDTO = new ArticleDTO();
+        articleDTO.setOriginContent("# biaotia \n > 这是引用");
+        articleDTO.setStatus(ArticleStatus.DELETE.getValue());
+        articleDTO.setTitle("test test");
+        Article a = BeanUtil.transform(articleDTO, Article.class);
+
+        Long save = articleMapper.insertArticle(a);
+
+        System.out.println("aaaa" + save);
+    }
+
     @Test
     void testGetHotsArticle(){
         ArrayList<ArticleVo> hotsPost =

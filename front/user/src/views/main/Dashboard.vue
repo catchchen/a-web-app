@@ -38,7 +38,7 @@ export default {
   components: {
     // PageView,
     JournalPublishCard,
-    RecentCommentTab
+
   },
   computed: {
   //   formattedLogDatas() {

@@ -8,14 +8,14 @@ import {
   // Badge,
   // Breadcrumb,
   Button,
-  // Card,
+  Card,
   // Collapse,
   // Checkbox,
   Col,
-
+  Space,
   Dropdown,
-  // Form,
-  // FormModel,
+  Form,
+  FormModel,
   Icon,
   Input,
   // InputNumber,
@@ -24,16 +24,14 @@ import {
   Menu,
   Modal,
   notification,
-  PageHeader,
+  // PageHeader,
   // Pagination,
   // Popover,
   // Progress,
-
   Row,
   // Select,
   // Spin,
   // Switch,
-
   // TreeSelect,
   // Tabs,
   // Tag,
@@ -56,12 +54,17 @@ Vue.use(Icon)
 Vue.use(Input)
 Vue.use(Layout)
 Vue.use(Menu)
+Vue.use(FormModel)
+Vue.use(Form)
+Vue.use(Card)
 // Vue.use(Pagination)
 // Vue.use(Progress)
 // Vue.use(Radio)
 Vue.use(Modal)
 Vue.use(Row)
+Vue.use(Space)
 // Vue.use(Select)
+
 // message config
 // message.config({
 //   maxCount: 1

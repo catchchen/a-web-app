@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <halo-editor
       ref="md"
       v-model="originalContentData"
@@ -7,6 +7,7 @@
       :toolbars="toolbars"
       :ishljs="true"
       @save="handleSave"
+      style="height: 80vh"
       autofocus
     />
   </div>

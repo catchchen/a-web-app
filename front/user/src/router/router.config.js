@@ -2,7 +2,7 @@ import { BasicLayout, BlankLayout } from "@/layouts";
 /**
  * 基础路由
  */
-export const constantRouter = [
+export const constantRouterMap = [
   {
     path: '/login',
     name: 'Login',
@@ -24,7 +24,7 @@ export const constantRouter = [
   /**
    * 路由
    */
-export const asyncRouter = [
+export const asyncRouterMap = [
   {
     path: '/',
     name: 'BasicLayout',
@@ -43,38 +43,50 @@ export const asyncRouter = [
       {
         path: '/list',
         name: 'postList',
-        component: () => import('@/views/post/PostList')
+        component: () => import('@/views/post/PostList'),
+        meta: { title: 'post list'}
       },
       {
         path: '/write',
         name: 'Editor',
         component: () => import('@/views/post/PostEdit'),
+        meta: {title: 'editor'}
       },
       // posts
       {
         path: '/posts',
         name: 'Posts',
-        component: BlankLayout,
-        redirect: '/posts/list',
-        meta: { title: '所有发布文章', icon: 'form' },
+        component: BlankLayout,// blank  div  router-view
+        redirect: '/list',
+        meta: { title: '所有发布文章' },
         children: [
           {
-            path: '/posts/write',
+            path: '/posts/list',
             name: 'PostEditor',
             component: () => import('@/views/post/PostList'),
+            meta: { title: '文章', icon: 'form' },
           },
           {
             path: '/posts/write',
             name: 'PostEditor',
             component: () => import('@/views/post/PostEdit'),
           },
-          {
-            path: '/posts/edit',
-            name: 'PostEditor',
-            component: () => import('@/views/post/PostEdit'),
-          },
+          // {
+          //   path: '/posts/edit',
+          //   name: 'PostEditor',
+          //   component: () => import('@/views/post/PostEdit'),
+          // },
         ]
       },
+      // attachments
+      {
+        path: '/attachments',
+        name: 'Attachments',
+        component: () => import('@/components/Attachment/AttachmentList'),
+        meta: { title: '附件'}
+      },
     ]
+
+
   }
 ]
