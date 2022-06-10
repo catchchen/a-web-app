@@ -15,7 +15,7 @@ import java.util.Map;
 @RestController
 @CrossOrigin(origins = "*")
 public class Hello {
-    @GetMapping("/hello")
+    @GetMapping("/api/hello")
     Response hello() {
         Map I = new HashMap();
         I.put("school" ,"大连东软信息学院");

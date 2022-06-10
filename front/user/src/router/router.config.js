@@ -7,7 +7,7 @@ export const constantRouterMap = [
     path: '/login',
     name: 'Login',
     meta: { title: '登录' },
-    component: () => import('@/views/user/Login')
+    component: () => import('@/views/user/AdminLogin')
   },
   {
     path: '/password/reset',

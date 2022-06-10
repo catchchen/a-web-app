@@ -28,12 +28,13 @@ public class UserRestfulController {
     public Response login(@RequestBody LoginFormParam login, HttpSession session){
         String account = login.getUserAccount();
         final User user;
-        user = Validator.isEmail(account)? userService.getUserByUsername(account):
+        user = Validator.isEmail(account)?
+                userService.getUserByUsername(account):
                 userService.getUserByEmail(account);
         if(userService.matchPassword(login.getPassword(), user)) {
             session.setAttribute("userId", user.getId());
             AuthToken userToken = new AuthToken(user.getId(), user.getUsername());
-            return Response.ok(userToken);
+            return Response.ok( "登录成功",userToken);
         }
         return Response.fail("用户名或密码错误");
     }

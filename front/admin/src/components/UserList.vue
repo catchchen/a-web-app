@@ -27,16 +27,16 @@
         blue   posted
       </a-tag>-->
 
-            <!--
-                  <a-tag color="red">
-                    red
-                  </a-tag>回收
-                  <a-tag color="orange">
-                    orange
-                  </a-tag> 草稿
-                  status
-                  <a-tag>编辑中 </a-tag>
-            -->
+<!--
+      <a-tag color="red">
+        red
+      </a-tag>回收
+      <a-tag color="orange">
+        orange
+      </a-tag> 草稿
+      status
+      <a-tag>编辑中 </a-tag>
+-->
             {{ tag.toUpperCase() }}
           </a-tag>
         </span>

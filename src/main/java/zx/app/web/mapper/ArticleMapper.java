@@ -24,14 +24,13 @@ public interface ArticleMapper {
 
     Long insertArticle(Article article);
 
-    int updateStatus(Integer id, ArticleStatus status);
+    int updateStatus(Integer id, Integer status);
 
     ArrayList<ArticleVo> findHotList();
 
     List<ArticleVo> findLatestArticleVo();
 
     ArticlePageVo findArticleVoById(Integer id);
-
 
     List<ArticleVo> selectArticleVoListByUserId(Integer id);
 }

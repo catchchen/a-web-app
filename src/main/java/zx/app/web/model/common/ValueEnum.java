@@ -19,7 +19,7 @@ public interface ValueEnum<T> {
      * @param <E>      enum generic
      * @return corresponding enum
      */
-    //
+    // 协变
     static <V, E extends ValueEnum<V>> E valueToEnum(Class<E> enumType, V value) {
         Assert.notNull(enumType, "enum type must not be null");
         Assert.notNull(value, "value must not be null");

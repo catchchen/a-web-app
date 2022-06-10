@@ -24,7 +24,7 @@ public class AttachmentController {
         boolean flag = attachmentService.upload(file);
 
         if(!flag){
-            return Response.fail();
+            return Response.fail("上传失败");
         }
         return Response.ok("上传成功");
     }

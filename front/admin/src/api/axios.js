@@ -5,7 +5,7 @@ axios.interceptors.response.use(res => {
 })
 
 const AdminApi = axios.create({
-    baseURL:process.env.BASE_API,
+    baseURL: process.env.BASE_API,
     // headers: {'Content-Type': 'application/json'},
     timeout: 1000,
 })

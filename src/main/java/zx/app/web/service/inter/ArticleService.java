@@ -1,7 +1,6 @@
 package zx.app.web.service.inter;
 
 
-import zx.app.web.model.common.ArticleStatus;
 import zx.app.web.model.common.Response;
 import zx.app.web.model.dto.ArticleDTO;
 import zx.app.web.model.vo.ArticlePageVo;
@@ -25,7 +24,7 @@ public interface ArticleService {
 
     List getPostList();
 
-    Response updateStatusById(Integer article, ArticleStatus status);
+    Response updateStatusById(Integer article, Integer status);
 
     ArrayList<ArticleVo> getHotsPost();
 }

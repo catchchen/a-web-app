@@ -3,7 +3,6 @@ package zx.app.web.service;
 import org.springframework.stereotype.Service;
 import zx.app.web.mapper.ArticleMapper;
 import zx.app.web.model.common.Response;
-import zx.app.web.model.common.ArticleStatus;
 import zx.app.web.model.dto.ArticleDTO;
 import zx.app.web.model.entity.Article;
 import zx.app.web.model.vo.ArticlePageVo;
@@ -70,7 +69,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Response updateStatusById(Integer id, ArticleStatus status) {
+    public Response updateStatusById(Integer id, Integer status) {
         int i = articleMapper.updateStatus(id, status);
         if(i < 1) return Response.fail("修改状态失败");
         return Response.ok("修改状态成功");

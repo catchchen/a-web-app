@@ -26,8 +26,12 @@ public class SortController {
     @GetMapping("sorts")
     public Response getSorts(){
         ArrayList<String> sortNames = new ArrayList<>();
-
         return Response.ok(sortNames);
+    }
+    @PutMapping("sorts/{sortId}")
+    public Response modifySorts(@PathVariable("sortId") Integer id){
+//        sortService.updateSort(id);
+        return Response.ok("修改成功");
     }
 
     @DeleteMapping("/{sortId}")

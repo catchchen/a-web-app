@@ -5,13 +5,14 @@
   </div>
   <markdown-editor
   :originalContent="postToStage.originalContent"
-  @onSaveDraft="handleSave(true)"
+  @onSaveDraft="handleSave()"
   @onContentChange="onContentChange"
   />
   <a-space>
     <Button @click="handlePostArticle" text="发布"></Button>
     <Button type="" @click="handlePostArticle" text="保存草稿"></Button>
     <a-button type="dashed" @click="handleSave">清空</a-button>
+    <a-button type="" @click="handleTest">Test</a-button>
   </a-space>
 </div>
 </template>
@@ -47,36 +48,36 @@ export default {
     // })
   },
   methods: {
+    handleTest () {
+    },
     handleSave(){
       this.$axios.get(`/v1/hello`).then( res => {
         console.log(res)
       })
     },
     handlePostArticle () {
+      //  前端check userId 和 title不为空
       let userId = Number.parseInt(localStorage.getItem("userId"));
       if(isNaN(userId)) {
-        userId = 100 ;
+        userId = 100000 ;
       }
-      this.$axios({
-        url: `https://localhost:9090/api/user/100/articles`,
-        method: "post",
-        data: {
+      // 发布文章 调用
+      this.$axios.post(`/v1/user/${userId}/articles`, {
           title: this.postToStage.title,
-          originalContent: this.postToStage.originalContent,
+          originContent: this.postToStage.originalContent,
           status: 1
-        }
       }).then(res => {
         console.log(res.data)
         if(res.data.code == 200)
         this.$message.info(res.data.message)
         else this.$message.warn(res.data.message)
+
       })
     },
     onContentChange(val) {
       this.postToStage.originalContent = val
     },
   }
-
 }
 </script>
 
