@@ -84,11 +84,11 @@
                   <li><a th:href="@{/user-home}">个人中心</a>
                     <ul class="dropdown">
                       <li><a href="index.html">信息管理</a></li>
-                      <li><a href="about-us.html">文章管理</a></li>
+                      <li><a th:href="@{/user/${session.userId}/articles}">文章管理</a></li>
                     </ul>
                   </li>
-                  <li><a href="about-us.html">关于我</a></li>
-                  <li><a th:href="@{register.html}" href="../static/register.html">注册</a></li>
+                  <li><a th:href="@{/about-me.html}" href="../static/about-me.html">关于我</a></li>
+                  <li><a th:href="@{/register.html}" href="../static/register.html">注册</a></li>
                 </ul>
               </div>
               <!-- Nav End -->
