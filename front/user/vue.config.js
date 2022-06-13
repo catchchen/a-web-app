@@ -1,5 +1,6 @@
 module.exports = {
   devServer: {
+    port: 8081,
     // 代理规则
     proxy: {
       "/v1": {

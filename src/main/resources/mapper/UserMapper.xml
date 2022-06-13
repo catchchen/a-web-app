@@ -13,7 +13,7 @@
            u.grade,
            u.expire,
            u.attr3
-    FROM users u WHEN u.email = #{email}
+    FROM users u WHERE u.email = #{email}
 </select>
 
 <select id="findByUsername" parameterType="string" resultType="zx.app.web.model.entity.User">

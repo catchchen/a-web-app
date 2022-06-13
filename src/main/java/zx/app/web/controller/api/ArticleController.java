@@ -7,16 +7,19 @@ import zx.app.web.model.common.Response;
 import zx.app.web.model.common.ArticleStatus;
 import zx.app.web.model.dto.ArticleDTO;
 import zx.app.web.model.entity.Article;
+import zx.app.web.model.vo.ArticlePageVo;
+import zx.app.web.model.vo.ArticleVo;
 import zx.app.web.service.inter.ArticleService;
 import zx.app.web.service.inter.UserService;
+
+import java.util.List;
 
 /**
  * @author chenk
  */
 @RestController
-@CrossOrigin("*")
 @Slf4j
-@RequestMapping("/api/")
+@RequestMapping("/api/article/")
 public class ArticleController {
     private final ArticleService articleService;
     private final UserService userService;
@@ -25,6 +28,13 @@ public class ArticleController {
         this.articleService = articleService;
         this.userService = userService;
     }
+    @GetMapping("user/{userId}/articles")
+    public Response getArticles( @PathVariable("userId") Integer userId){
+        log.info("in article post request");
+        List<ArticleVo> articleVoByUserId = articleService.getArticleVoByUserId(userId);
+        return Response.ok(articleVoByUserId);
+    }
+
     @PostMapping("user/{userId}/articles")
     public Response createArticle(@RequestBody ArticleDTO articleDTO, @PathVariable("userId") Integer userId){
         log.info("in article post request");

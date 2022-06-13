@@ -29,11 +29,14 @@ public class UserRestfulController {
         String account = login.getUserAccount();
         final User user;
         user = Validator.isEmail(account)?
-                userService.getUserByUsername(account):
-                userService.getUserByEmail(account);
+                userService.getUserByEmail(account):
+                userService.getUserByUsername(account);
+        if(user == null) {
+           return Response.fail("用户名或邮箱不存在");
+        }
         if(userService.matchPassword(login.getPassword(), user)) {
             session.setAttribute("userId", user.getId());
-            AuthToken userToken = new AuthToken(user.getId(), user.getUsername());
+            AuthToken userToken = new AuthToken(user.getId(), user.getStatus(),user.getUsername());
             return Response.ok( "登录成功",userToken);
         }
         return Response.fail("用户名或密码错误");

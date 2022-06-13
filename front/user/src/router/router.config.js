@@ -7,14 +7,14 @@ export const constantRouterMap = [
     path: '/login',
     name: 'Login',
     meta: { title: '登录' },
-    component: () => import('@/views/user/AdminLogin')
+    component: () => import('@/views/user/UserLogin')
   },
-  {
-    path: '/password/reset',
-    name: 'ResetPassword',
-    meta: { title: '重置密码' },
-    component: () => import('@/views/user/ResetPassword')
-  },
+  // {
+  //   path: '/password/reset',
+  //   name: 'ResetPassword',
+  //   meta: { title: '重置密码' },
+  //   component: () => import('@/views/user/ResetPassword')
+  // },
   {
     path: '/404',
     name: 'NotFound',

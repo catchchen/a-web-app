@@ -89,7 +89,7 @@ public class UserController {
         log.info("--->{} --->{}进入注册", username, email);
         RegisterFormParams params = new RegisterFormParams(username,nickname,password,email,sign);
         final User user = userService.getUserByUsername(username);
-        log.info("--->{} 用户名", user.getUsername());
+        //  user.getUsername())
         if(user != null){
             ModelMap.addAttribute("msg", "用户名被占用");
             return "error/error";

@@ -8,10 +8,12 @@ import lombok.Data;
 @Data
 public class AuthToken {
     private Integer id;
+    private Boolean status;
     private String token;
 
-    public AuthToken(Integer id, String token) {
+    public AuthToken(Integer id, Boolean status, String token) {
         this.id = id;
+        this.status = status;
         this.token = token;
     }
 }

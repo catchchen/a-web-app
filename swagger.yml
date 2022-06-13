@@ -30,7 +30,13 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: rename workspace success
+                    example: success
+                  data:
+                    type: array
+                    items:
+                      item:
+        500:
+          description: 'fail to get user list'
 
   /api/admin/users/{userId}:
     get:
@@ -319,7 +325,7 @@ paths:
           required: true
       responses:
         200:
-          description: 获得用户列表成功的返回值
+          description: " "
           schema:
             type: object
             properties:
@@ -334,15 +340,15 @@ paths:
 
 # thymeleaf 相关 模板渲染界面
 
-/index:
-  get:
-    tags:
-      - user-template
+# /index:
+#   get:
+#     tags:
+#       - user-template
 
 
-/users/{userId}/home:
-  parameters:
-    - name: userId
+# /users/{userId}/home:
+#   parameters:
+#     - name: userId
 
 definitions:
   Article:
@@ -370,14 +376,6 @@ definitions:
       complete:
         type: "boolean"
         default: false
-  Sort:
-    type: "object"
-    properties:
-      id:
-        type: "integer"
-        format: "int64"
-      name:
-        type: "string"
   User:
     type: "object"
     properties:
@@ -405,9 +403,21 @@ definitions:
       id:
         type: "integer"
         format: "int64"
+      email:
+        type: "string"
+      state:
+        type: "string"
+      count:
+        type: "number"
+  Sort:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
       name:
         type: "string"
-  Pet:
+  SortVo:
     type: "object"
     required:
       - "name"

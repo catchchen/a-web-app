@@ -1,9 +1,6 @@
 package zx.app.web.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import zx.app.web.model.UserQuery;
 import zx.app.web.model.entity.User;
 import zx.app.web.model.vo.UserVo;
@@ -28,7 +25,7 @@ public interface UserMapper {
 
     User findByUsername(String username);
 
-    User findByEmail(String email);
+    User findByEmail(@Param("email") String email);
 
 //    List<User> findBy(UserQuery userQuery);
 

@@ -2,8 +2,8 @@
   <div>
     <a-card :bordered="false" :bodyStyle="{ padding: '16px' }">
       <div style="margin-bottom: 16px">
-  <!-- 使用 expire 控制 用户写文章的状态-->
-        <a-button type="primary" :disabled="true" :loading="loading" @click="editorArticle">
+  <!-- 使用 expire 控制 用户写文章的状态 true 表示不能-->
+        <a-button type="primary" :disabled="false" :loading="loading" @click="editorArticle">
           <router-link to="/write">
             写文章
           </router-link>
@@ -29,45 +29,61 @@
 const columns = [
   {
     title: '文章标题',
-    dataIndex: 'name',
+    dataIndex: 'title',
   },
   {
     title: '状态',
-    dataIndex: 'status',
+    dataIndex: 'summary',
   },
-  {
+ {
     title: '操作',
     dataIndex: 'address',
   },
 ];
 
-const data = [];
 // 假数据
-for (let i = 0; i < 46; i++) {
-  data.push({
-    key: i,
-    name: `Edward King ${i}`,
-    status: 32,
-    address: `London, Park Lane no. ${i}`,
-  });
-}
+// for (let i = 0; i < 46; i++) {
+//   data.push({
+//     key: i,
+//     name: `Edward King ${i}`,
+//     status: 32,
+//     address: `London, Park Lane no. ${i}`,
+//   });
+// }
 
 export default {
   name: 'PostList',
   data () {
     return {
-      data,
+      data: [],
       columns,
       selectedRowKeys:[],
       loading: false
     }
   },
-  // beforeMounted(){
-  //
-  // },
+  beforeMount(){
+    console.log("00000")
+    this.getPostList()
+  },
   methods: {
     getPostList () {
-      // this.$axios.get()
+      //  前端check userId 和 title不为空
+      let userId = Number.parseInt(localStorage.getItem("userId"));
+      if(isNaN(userId)) {
+        userId = 100 ;
+      }
+      // 文章列表 调用
+      this.$axios.get(`/v1/article/user/${userId}/articles`).then(res => {
+        // if(res.status == 200){
+          this.data = res.data
+          console.log(res.data)
+          this.$message.info(res.data.message);
+        // } else this.$message.warn(res.data.message)
+      }).then(err => {
+        console.log(err)
+      })
+
+
     },
     editorArticle () {
       console.log("11")

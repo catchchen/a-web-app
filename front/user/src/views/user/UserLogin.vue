@@ -37,12 +37,26 @@ export default {
     handleLogin () {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          // 验证成功
-          this.$axios.get("http://localhost:9090/hello").then(res => {
-            console.log(res.data)
+          // 验证成功         // 发送登录请求
+          this.$axios.post("/v1/user/login",
+              {
+                userAccount: this.from.info.username,
+                password: this.from.info.password
+              }
+              ).then(res => {
+                // success
+                console.log(res)
+                localStorage.setItem("userId", res.data.id)
+                this.$message.info("登录成功")
+                this.$router.push("/list")
+          }).catch(err => {
+            console.log("error",err)
+            this.$message.warn("error")
           })
-          // 发送登录请求
-          console.log(this.from.info)
+          // this.$axios.get("/v1/hello").then(res => {
+          //   console.log(res.data)
+          //   localStorage.set("userId", res.data.id)
+          // })
         }
       })
     }
@@ -51,8 +65,8 @@ export default {
     return {
       from: {
         info: {
-          username: null,
-          password: null
+          username: '',
+          password: ''
         },
         rules: {
           username: [{ required: true, message: '* 用户名/邮箱不能为空', trigger: ['change'] }],

@@ -2,10 +2,10 @@
   <a-layout class="app-wapper">
 <!--    left side bar-->
 <!--    <a-layout-sider class="app-sider" :trigger="null" v-model:collapsed="collapsed" collapsible>-->
-      <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
+      <a-layout-header :style="{ position: 'fixed', zIndex: 10000, width: '100%' }">
       <a-menu theme="dark"
               mode="horizontal"
-              :default-selected-keys="['2']"
+              :default-selected-keys="['3']"
               :style="{ lineHeight: '64px' }">
         <a-menu-item key="1">
           <a-icon type="user" />
@@ -24,10 +24,9 @@
         </a-menu-item>
         <a-menu-item key="5" class="app-sider">
           <!--          user.avatar ||-->
-          <a-avatar class="avatar" size="small" :src="'//cn.gravatar.com/avatar/?s=256&d=mm'" />
+          <a-avatar style="text-align: right" class="avatar" size="small" :src="'//cn.gravatar.com/avatar/?s=256&d=mm'" />
         </a-menu-item>
       </a-menu>
-
 
       </a-layout-header>
     <a-layout>
