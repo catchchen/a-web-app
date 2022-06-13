@@ -21,6 +21,8 @@ import java.util.UUID;
  */
 @Service
 public class AttachmentServiceImpl implements AttachmentService {
+    private static String upload_path = "/resources/upload";
+    private static final String PATH = "src/main/resources/resources/upload";
     public boolean upload(MultipartFile file){
         // 文件上传的 原名
         String originalFilename = file.getOriginalFilename();

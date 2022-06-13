@@ -39,6 +39,19 @@
                art.summary,
                 art.visits
         FROM article art where art.id = #{id}
+<!--        <where></where>   -->
+        <if test="articleQuery.username != null and userQuery.username != ''">
+            AND u.username like CONCAT('%',#{articleQuery.username},'%')
+        </if>
+        <if test="articleQuery.email != null and userQuery.email != ''">
+            AND u.email like CONCAT('%',#{articleQuery},'%')
+        </if>
+        <if test="articleQuery.createTimeFrom != null ">
+            AND u.create_time &gt; #{articleQuery}
+        </if>
+        <if test="articleQuery.createTimeTo != null ">
+            AND u.create_time &lt;  #{articleQuery}
+        </if>
     </select>
 
     <select id="findHotList" resultType="zx.app.web.model.vo.ArticleVo">

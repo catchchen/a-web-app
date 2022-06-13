@@ -105,7 +105,6 @@ public class UserController {
         return "500";
     }
 
-
     @GetMapping("/article/{articleId}")
     public String getArticleInfo(@PathVariable("articleId") Integer id, Model m){
         ArticlePageVo articleVoById = articleService.getArticleVoById(id);
@@ -113,8 +112,10 @@ public class UserController {
         return "/article-single-page";
     }
 
-    @GetMapping("/users/{userId}/home")
-    public String userGetArticlePagedInfo(@PathVariable("userId") Integer userId, ModelMap map, HttpSession session) {
+
+// {userId}
+    @GetMapping("/user/home")
+    public String userGetArticlePagedInfo(@PathVariable("userId") ModelMap map, HttpSession session) {
         Object userId1 = session.getAttribute("userId");
         Integer id = Integer.parseInt(userId1.toString());// String.valueOf(userId1)
         map.addAttribute("posts", articleService.getArticleVoByUserId(id));

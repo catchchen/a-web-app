@@ -7,5 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
  * @description 功能
  */
 public interface AttachmentService {
+
     boolean upload(MultipartFile file);
 }

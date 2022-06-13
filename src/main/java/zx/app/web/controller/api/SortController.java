@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 
 @RestController
-@RequestMapping("/user/")
+@RequestMapping("api/user/")
 public class SortController {
     private final SortService sortService;
     public SortController(SortService sortService){
@@ -34,7 +34,7 @@ public class SortController {
         return Response.ok("修改成功");
     }
 
-    @DeleteMapping("/{sortId}")
+    @DeleteMapping("sorts/{sortId}")
     public Response delete(@PathVariable("sortId") Integer id){
 
         return sortService.remove(id);

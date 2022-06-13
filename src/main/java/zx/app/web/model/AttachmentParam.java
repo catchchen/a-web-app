@@ -1,4 +1,4 @@
-package zx.app.web.model.entity;
+package zx.app.web.model;
 
 import lombok.Data;
 
@@ -8,11 +8,8 @@ import java.util.Date;
  * @author chenk
  */
 @Data
-public class Attachment {
-    private Integer id;
+public class AttachmentParam {
     private String path;
     private String name;
-    private Date createTime;
-    private Date updateTime;
     private String suffix;
 }

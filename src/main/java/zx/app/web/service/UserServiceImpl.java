@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import zx.app.web.mapper.UserMapper;
 import zx.app.web.model.RegisterFormParams;
+import zx.app.web.model.Response;
 import zx.app.web.model.entity.User;
 import zx.app.web.model.vo.UserVo;
 import zx.app.web.service.inter.UserService;
@@ -69,6 +70,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserVo> getUserVoList() {
         return userMapper.selectUserVo();
+    }
+
+    @Override
+    public Response modifyUserPassword(User user) {
+        return Response.ok("密码修改成功");
     }
 
 }

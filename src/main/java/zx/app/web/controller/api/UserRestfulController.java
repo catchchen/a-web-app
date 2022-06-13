@@ -51,8 +51,9 @@ public class UserRestfulController {
 
     @PutMapping("/user/password")
     public Response changeUserPassword(@RequestBody User user){
-//        userService.changeUserPassword(user);
+
 //        Response.ok("密码修改成功")
-        return Response.ok("密码修改成功");
+        return  userService.modifyUserPassword(user);
+
     }
 }

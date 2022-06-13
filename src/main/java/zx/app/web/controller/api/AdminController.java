@@ -1,7 +1,5 @@
 package zx.app.web.controller.api;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +31,7 @@ public class AdminController {
 //        this.commentService = commentService;
     }
 
-    /** user operation **/
+    /****** user operation *******/
     @GetMapping(value = "/users")
     public Response getUserVoList(){
 
@@ -80,8 +78,8 @@ public class AdminController {
     /** user operation over **/
 
 
-    // ///article start
-    @PostMapping("user/{userId}/article/{articleId}")
+    /************  article start  ***************/
+    @PostMapping("user/{userId}/article/{articleId}/comments")
     public Response commetUserArticle(@PathVariable("userId") Integer uid ,@PathVariable("articleId") Integer aid){
 
         return Response.ok("comment success");

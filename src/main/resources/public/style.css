@@ -1,12 +1,7 @@
 /* [ -- Master Stylesheet -- ]
 
 ------------------------------------------------------
-:: Template Name: Original - Lifestyle Blog Template
-:: Author: Colorlib
-:: Author URL: https://colorlib.com
-:: Version: 1.0.0
-:: Created: April 3, 2018
-:: Last Updated: April 3, 2018
+:: Template Name: Blog Template
 -------------------------------------------------- */
 /* :: Import Fonts */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
@@ -25,8 +20,8 @@
   src: url("fonts/helveticaneue_medium-webfont.woff2") format("woff2"), url("fonts/helveticaneue_medium-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
-/* :: Import All CSS */
-/* :: Base CSS */
+/* Import All CSS */
+/* Base CSS */
 * {
   margin: 0;
   padding: 0; }

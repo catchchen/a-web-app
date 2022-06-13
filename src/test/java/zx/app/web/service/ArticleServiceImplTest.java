@@ -52,16 +52,16 @@ class ArticleServiceImplTest {
         System.out.println(articleVo.getSummary());
         System.out.println(articleVo.getSign());
     }
-    @Test
-    void testPageArticle(){
-        PageHelper.startPage(1,5);
-        List<ArticleVo> articleVos = articleMapper.selectArticleVoListByUserId(1);
-        PageInfo page = new PageInfo(articleVos);
+//    @Test
+//    void testPageArticle(){
+//        PageHelper.startPage(1,5);
+//        List<ArticleVo> articleVos = articleMapper.selectArticleVoListByUserId(1);
+//        PageInfo page = new PageInfo(articleVos);
         //测试PageInfo全部属性
         //PageInfo包含了非常全面的分页属性
-        assertEquals(1, page.getPageNum());
-        assertEquals(5, page.getPageSize());
-        System.out.println(page.getList().toArray().toString());
+//        assertEquals(1, page.getPageNum());
+//        assertEquals(5, page.getPageSize());
+//        System.out.println(page.getList().toArray().toString());
 //        assertEquals(1, page.getStartRow());
 //        assertEquals(10, page.getEndRow());
 //        assertEquals(183, page.getTotal());
@@ -70,12 +70,13 @@ class ArticleServiceImplTest {
 //        assertEquals(false,page.isHasNextPage());
     }
 
-    @Test
-    void getArticleVoPagedById(){
-        ArticlePageVo articleVoById = articleService.getArticleVoById(0);
-        System.out.println(articleVoById.getTitle());
-        System.out.println(articleVoById.getFormatContent());
-        String s = MarkdownUtil.renderHtml("## wtamadeya \n\n > 这是引用\n\n - 文件 \n - li \n - li2");
-        System.out.println(s);
-    }
-}
+//    @Test
+//    void getArticleVoPagedById(){
+//        ArticlePageVo articleVoById = articleService.getArticleVoById(0);
+//        System.out.println(articleVoById.getTitle());
+//        System.out.println(articleVoById.getFormatContent());
+//        String s = MarkdownUtil.renderHtml("## wtamadeya \n\n > 这是引用\n\n - 文件 \n - li \n - li2");
+//        System.out.println(s);
+//    }
+
+//}

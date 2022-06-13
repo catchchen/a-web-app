@@ -2,6 +2,7 @@ package zx.app.web.service.inter;
 
 import org.springframework.lang.NonNull;
 import zx.app.web.model.RegisterFormParams;
+import zx.app.web.model.Response;
 import zx.app.web.model.entity.User;
 import zx.app.web.model.vo.UserVo;
 
@@ -29,4 +30,6 @@ public interface UserService {
     User getUserById(Integer id);
 
     List<UserVo> getUserVoList();
+
+    Response modifyUserPassword(User user);
 }

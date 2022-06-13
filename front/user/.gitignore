@@ -2,9 +2,8 @@
 node_modules
 /dist
 
-/front/admin/node_modules/**
-/front/uesr/node_modules/**
-
+/front/admin/node_modules
+/front/uesr/node_modules
 
 # local env files
 .env.local
