@@ -1,6 +1,8 @@
 package zx.app.web.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import zx.app.web.model.AttachmentParam;
 
 /**
  * @author chenk
@@ -8,5 +10,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface AttachmentMapper {
-    int insertUpload();
+    int insertUpload(AttachmentParam attachmentParam, @Param("userId")Integer userId);
 }

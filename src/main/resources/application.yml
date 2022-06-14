@@ -6,12 +6,16 @@ spring:
     prefix: classpath:/templates/
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: chenk
-    username: chenk
-    url: jdbc:mysql://127.0.0.1:3307/zxdb?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+    password: root
+    username: root
+    url: jdbc:mysql://127.0.0.1:3306/zxdb?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
   devtools:
     restart:
       enabled: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 mybatis:

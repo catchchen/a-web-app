@@ -8,5 +8,5 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface AttachmentService {
 
-    boolean upload(MultipartFile file);
+    boolean upload(MultipartFile file, Integer id);
 }

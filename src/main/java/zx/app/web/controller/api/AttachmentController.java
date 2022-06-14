@@ -32,14 +32,14 @@ public class AttachmentController {
     @PostMapping(value = "/{userId}/upload")
     public Response upload(@PathVariable("userId") Integer id,@RequestPart("img") MultipartFile file) throws IOException {
         // enctype="multipart/form-data"        name  =  img
-        log.info("用户id：{}，上传文件名：{}", id, file.getSize());
+        log.info("用户id：{}，上传文件名：{}", id, file.getOriginalFilename());
 //        file.getBytes() 获取文件的字节信息
 // 如果为空
         if(!file.isEmpty()){
             return Response.fail("上传文件不能为空");
         }
 
-        boolean flag = attachmentService.upload(file);
+        boolean flag = attachmentService.upload(file, id);
         if(!flag){
             return Response.fail("上传失败");
         }

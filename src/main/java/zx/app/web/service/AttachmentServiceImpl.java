@@ -11,6 +11,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 import zx.app.web.mapper.AttachmentMapper;
+import zx.app.web.model.AttachmentParam;
 import zx.app.web.service.inter.AttachmentService;
 import zx.app.web.utils.FileUtil;
 
@@ -26,12 +27,11 @@ import java.util.UUID;
 @Service
 public class AttachmentServiceImpl implements AttachmentService {
     private static String upload_path = "/resources/upload";
-    private static final String PATH = "src/main/resources/resources/upload";
     private final AttachmentMapper attachmentMapper;
     public AttachmentServiceImpl(AttachmentMapper attachmentMapper) {
         this.attachmentMapper = attachmentMapper;
     }
-    public boolean upload(MultipartFile file){
+    public boolean upload(MultipartFile file , Integer uid){
         // 文件上传的 原名
         String originalFilename = file.getOriginalFilename();
         // 获取文件拓展名  originalFilename.substring(originalFilename.lastIndexOf("."));
@@ -41,13 +41,18 @@ public class AttachmentServiceImpl implements AttachmentService {
         String filePath = null;
         try {
             // 类路径 下
-            filePath = ResourceUtils.getURL("classpath:").getPath().substring(1) + "static/img/";
+            filePath = ResourceUtils.getURL("classpath:").getPath().substring(1) + upload_path;
             log.info("upload file path:{}", filePath);
-//        attachmentService.save()
-            FileCopyUtils.copy(file.getInputStream(),
-                    new FileOutputStream(new File(filePath + filename)));
 
-            attachmentMapper.insertUpload();
+            // 保存到 服务器中
+            file.transferTo(new File(filePath));
+
+            AttachmentParam attachmentParam = new AttachmentParam();
+            attachmentParam.setSuffix(FileUtil.getExtension(file.getOriginalFilename()));
+            attachmentParam.setSize(file.getSize());
+            attachmentParam.setPath(upload_path + "/" + filename);
+            attachmentParam.setName(filename);
+            attachmentMapper.insertUpload(attachmentParam, uid);
 
             Map<String,String> path = new HashMap<>();
             // 返回给前端数据

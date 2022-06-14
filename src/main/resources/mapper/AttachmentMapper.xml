@@ -3,17 +3,16 @@
 <mapper namespace="zx.app.web.mapper.AttachmentMapper">
 
 
-    <select id="findById" parameterType="int" resultType="zx.app.web.model.entity.Attachment">
-        select a.id,
-               a.username,
-               a.emai,
-               a.password,
-               a.upload_time        uploadTime,
-               a.size,
-               a.suffix,
-               a.thumb_path,
-               a.path,
-        FROM attachments a where a.id = #{id}
-    </select>
+    <insert id="insertUpload" parameterType="zx.app.web.model.AttachmentParam" >
+        insert into attachments
+                id,
+               name,
+               userId,
+               update_time,
+               size,
+               suffix,
+               path
+        values(null, #{name}, #{userId}, now(), #{size}, #{suffix}, #{path})
+    </insert>
 
 </mapper>

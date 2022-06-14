@@ -11,5 +11,6 @@ import java.util.Date;
 public class AttachmentParam {
     private String path;
     private String name;
+    private Long size;
     private String suffix;
 }
